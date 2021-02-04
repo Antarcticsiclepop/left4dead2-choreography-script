@@ -1,13 +1,13 @@
 # Wolphin's Left 4 Dead 2 Choreography Script
 
-This script makes it easy to create your own dialogues between the survivors and orators for custom levels!
+This script makes it easy to create your own dialogues between the survivors and NPCs for custom levels!
 
-Subscribe to the workshop item to starting writing choreographic scripts for your custom levels:
+Subscribe to the workshop item to starting writing dialogue scripts for your custom levels:
 https://steamcommunity.com/workshop/filedetails/?id=2382842747
 
 You'll need to add this addon as **Required DLC** for your dialogues to work on your custom levels!
 
-# Creating your choreographic script
+# Creating your dialogue script
 
 Create a new `.nut` file under the `scripts` folder, I recommend using a similiar name as your custom level and suffix it with *_choreo*.
 
@@ -28,7 +28,7 @@ Click the links below to learn how to create dialogues:
 
 # Loading your dialogue script in your custom level
 
-To load your choreographic script to your level, add the following outputs to a `info_gamemode` entity:
+To load your dialogue script to your level, add the following outputs to a `info_gamemode` entity:
 
 ```
 My output named                 OnCoopPostIO

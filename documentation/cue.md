@@ -10,7 +10,7 @@
 );
 ```
 
-This is an example of a `Cue::` object with the orator *gambler* (a.k.a. Nick), a `Cue::` object must contain one or more **responses**. A single **response** will be prompted at random if the `Cue::` object's **criterias** are met. By default, the orator must be alive as a criteria.
+This is an example of a `Cue::` object with the orator *gambler* (a.k.a. Nick), a `Cue::` object must contain one or more **responses**. A single **response** will be prompted at random if the `Cue::` object's **criterias** are met. By default, as a criteria, the orator must be alive/exist.
 
 The list of survivors names are as follows:
 
@@ -35,7 +35,7 @@ Using this function will define criterias the **cue** must meet for the **respon
 
 ## **`::followup()`**
 
-Using this function will trigger another **concept** after is has successfully prompted any of its **responses**. Example:
+Using this function will trigger another **concept** after any of its **responses** has successfully prompted. Example:
 
 ```javascript
 .publishCues(

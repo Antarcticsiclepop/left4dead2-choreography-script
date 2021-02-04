@@ -14,7 +14,7 @@ The `::publishCues()` function must be the last callback.
 
 ## **`::remarkable()`**
 
-Using this function will allow the **cues** to be triggered by an **info_remarkable** entity. **Cues** that are remarkable cannot be triggered more than once. Example:
+Using this function will allow the **cues** to be triggered by an **info_remarkable** entity. When a **info_remarkable** successfully triggers a **response**, the entity will no longer trigger the **concept**, but the **concept** can used again with another **info_remarkable**. Example:
 
 ```javascript
 Concept()
@@ -40,7 +40,7 @@ remarkable(MIN_DISTANCE, MAX_DISTANCE)
 
 ## **`::triggerOnce()`**
 
-Using this function will restrict the **cues** from triggering again after it has successfully prompted a **response**. Exanple:
+Using this function will restrict the **cues** from triggering again after any has successfully prompted a **response**. Exanple:
 
 ```javascript
 Concept()

@@ -1,6 +1,6 @@
 # Writing a `Sequence::` object
 
-A `Sequence::` object is used as a quick way to trigger multiple **cues** in a sequential order. Example:
+A `Sequence::` object can be used as a quick way to trigger multiple **cues** in a sequential order. Example:
 
 ```javascript
 .publishCues(
@@ -35,7 +35,7 @@ You may add a **followup** to the last `Cue::` object of the **sequence**.
 
 ## **`::criterias()`**
 
-Using this function will add the same criterias to every **cue** that doesn't contain any.
+Using this function will set the same criterias to every **cue** of the **sequence**, the **criterias** of a `Cue::` object will not be overwritten.
 
 ```javascript
 .publishCues(
