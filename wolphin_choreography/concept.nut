@@ -1,56 +1,59 @@
-class Concept extends Parser {
+class Concept extends ParserBase {
 
+    _className = "Concept";
     _name = null;
     _randomize = false;
     _triggerOnce = false;
     _cues = null;
     _remarkable = null;
     _record = false;
-    _criterias = null;
 
     function remarkable(...) {
+        _functionName = "remarkable";
+        _validateParameterLength(vargv, 2);
+        _validateArrayType(vargv, "integer");
+        _validateRange(vargv, 0, 1);
+
         _remarkable = vargv;
         return this;
     }
 
-    function randomize(randomize) {
-        _randomize = randomize;
+    function randomize(...) {
+        _functionName = "randomize";
+        _validateNoParameters(vargv);
+
+        _randomize = true;
         return this;
     }
 
-    function triggerOnce() {
+    function triggerOnce(...) {
+        _functionName = "triggerOnce";
+        _validateNoParameters(vargv);
+
         _triggerOnce = true;
         return this;
     }
 
-    function record() {
+    function record(...) {
+        _functionName = "record";
+        _validateNoParameters(vargv);
+
         _record = true;
         return this;
     }
 
-    function criterias(...) {
-        local criterias = [];
-        foreach (criteria in vargv) {
-            if (type (criteria[0]) == "array") {
-                foreach (subcriteria in criteria) {
-                    criterias.append(subcriteria);
-                }
-            } else {
-                criterias.append(criteria);
-            }
-        }
+    function name(...) {
+        _functionName = "name";
+        _validateParameterLength(vargv, 1);
+        _validateType(vargv[0], "string");
+        _validateString(vargv[0]);
 
-        _criterias = criterias;
-        return this;
-    }
-
-    function name(concept) {
-        _name = concept;
+        _name = vargv[0];
         return this;
     }
 
     function publishCues(...) {
         _cues = vargv;
-        processConcept();
+        _processConcept();
     }
 }

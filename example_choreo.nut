@@ -17,7 +17,7 @@ local virgilInitialResponses = [
 
 Concept()
     .name("VirgilGetGas")
-    .randomize(true)
+    .randomize()
     .publishCues(
         Cue()
             .orator("orator")
@@ -58,7 +58,7 @@ Concept()
                 Cue()
                     .orator("orator")
                     .responses(virgilInitialResponses)
-                Delay(1.0)
+                Delay(0.5)
                 Cue()
                     .orator("orator")
                     .responses(
@@ -832,7 +832,6 @@ Concept()
 
 Concept()
     .name("LandmarksComment")
-    .remarkable(428)
     .publishCues(
         Cue()
             .orator("mechanic")
@@ -1237,7 +1236,6 @@ Concept()
 
 Concept()
     .name("SugarMillSeen")
-    .remarkable(370)
     .publishCues(
         Cue()
             .orator("mechanic")
@@ -1260,6 +1258,7 @@ Concept()
             )
         Cue()
             .orator("gambler")
+            .promptResponseOnce()
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")

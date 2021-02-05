@@ -33,6 +33,8 @@ Using this function will define criterias the **cue** must meet for the **respon
 );
 ```
 
+> There is a bug where **cues** with more criterias will have higher priority when evaluating, it's recommended to keep the same amount of criteras for all `Cue::` objects.
+
 ## **`::followup()`**
 
 Using this function will trigger another **concept** after any of its **responses** has successfully prompted. Example:
@@ -46,6 +48,45 @@ Using this function will trigger another **concept** after any of its **response
 );
 ```
 
-## **Known bugs**
+## **`::repeatableResponse()`**
 
-There is a bug where **cues** with more criterias will have higher priority when evaluating, it's recommended to keep the same amount of criteras for all `Cue::` objects.
+Using this function will make the **cue** prompt any **response** even if it has been recently prompted when triggered. Example:
+
+> By default, every **response** is prompted atleast once before repeating.
+
+```javascript
+.publishCues(
+    Cue()
+        .orator("gambler")
+        .repeatableResponse()
+        ...
+);
+```
+
+## **`::promptResponseSequentially()`**
+
+Using this function will make the **cue** prompt the **responses** in sequential order rather than randomly. Example:
+
+```javascript
+.publishCues(
+    Cue()
+        .orator("gambler")
+        .promptResponseSequentially()
+        ...
+);
+```
+
+## **`::promptResponseOnce()`**
+
+Using this function will make the **cue** prompt each **response** only once (it will not be able to prompt that **response** again). Example:
+
+```javascript
+.publishCues(
+    Cue()
+        .orator("gambler")
+        .promptResponseOnce()
+        ...
+);
+```
+
+> There is a bug where **responses** of a **cue** will be marked as played (when using this function) even when another **cue's response** was prompted, this is because of how the game handles the **cue** execution.

@@ -4,20 +4,20 @@ local NAN = sqrt(-1);
 /** Fixes reference issues. */
 local isValidSurvivor = isSurvivor;
 local FollowupClass = Followup;
-local parserPrint = printQuery;
+local parserPrint = printTable;
 
-class Parser {
+class ParserBase extends CriteriaBase {
 
     /** Parses the Concept to create Rules based on Cues and Sequences. */
-    function processConcept() {
+    function _processConcept() {
         local responseRules = [];
 
-        foreach (index, sequence in _cues) {
-            if ("_cues" in sequence) {
-                responseRules.extend(parseSequence(sequence, index));
+        foreach (index, item in _cues) {
+            if (item._className == "Sequence") {
+                responseRules.extend(_parseSequence(item, index));
             } else {
                 responseRules.append(
-                    createResponseRule(_name, getRuleName(index), sequence, index)
+                    _createResponseRule(_name, _getRuleName(index), item, index)
                 );
             }
         }
@@ -25,12 +25,12 @@ class Parser {
         g_rr.rr_ProcessRules(responseRules);
     }
 
-    function parseSequence(sequence, index) {
+    function _parseSequence(sequence, index) {
         local responseRules = [];
         local ruleIndex = 0;
         local cues = sequence._cues;
         local criterias = sequence._criterias;
-        local ruleName = getRuleName(index);
+        local ruleName = _getRuleName(index);
         
         // Reverse the cue list as ::pop() will be used
         cues.reverse();
@@ -38,7 +38,7 @@ class Parser {
         while (cues.len() > 0) {
 
             local cue = cues.pop();
-            if (!("_delay" in cue)) {
+            if (cue._className == "Cue") {
                 // The first cue of the sequence adopts the concept name.
                 // The rest of the rules get a unique concept name to follow up from the previous cue.
                 local ruleConcept = ruleIndex == 0 ? _name : ruleName + ruleIndex.tostring();
@@ -47,7 +47,7 @@ class Parser {
                 if (cues.len() > 0) {
                     local delay = 0;
 
-                    while("_delay" in cues.top()) {
+                    while(cues.top()._className == "Delay") {
                         delay = cues.pop()._delay;
                     }
 
@@ -65,7 +65,7 @@ class Parser {
                 }
 
                 // Create the Rule.
-                local responseRule = createResponseRule(ruleConcept, ruleName + ruleIndex.tostring(), cue, index);
+                local responseRule = _createResponseRule(ruleConcept, ruleName + ruleIndex.tostring(), cue, index);
                 responseRules.append(responseRule);
                 ruleIndex++;
             }
@@ -78,12 +78,12 @@ class Parser {
         Generate a unique name for every Cue and Sequence
         from the concept name. (concept_A, concept_B, concept_C...)
     */
-    function getRuleName(index) {
+    function _getRuleName(index) {
         local suffix = "_" + (65 + index).tochar();
         return _name + suffix;
     }
 
-    function getResponseThen(followup) {
+    function _getResponseThen(followup) {
         if (followup != null) {
             if (type (followup) == "string") {
                 return {
@@ -101,16 +101,16 @@ class Parser {
         }
     }
 
-    function createResponseRule(ruleConcept, ruleName, cue, index) {
+    function _createResponseRule(ruleConcept, ruleName, cue, index) {
         local onlyTriggerOnce = false;
         local recordConcept = false;
         local rule = {
             name = ruleName,
             criteria = clone cue._criterias,
             group_params = g_rr.RGroupParams({
-                permitrepeats = true,
-                sequential = false,
-                norepeat = false
+                permitrepeats = cue._repeatableResponse,
+                sequential = cue._promptResponseSequentially,
+                norepeat = cue._promptResponseOnce
             }),
             responses = []
         };
@@ -148,9 +148,7 @@ class Parser {
                 rule.criteria.append([@(query) !(remarkFlag in query) || remarkFlag in query && query[remarkFlag] != 1]);
             }
 
-            if (_criterias != null) {
-                rule.criteria.extend(_criterias);
-            }
+            rule.criteria.extend(_criterias);
         } else {
             rule.criteria.append(["concept", ruleConcept])
         }
@@ -185,12 +183,12 @@ class Parser {
                 response.scenename <- value != null ? "scenes/" + scenePath + value + ".vcd" : null;
             } else {
                 response.scenename <- value._scene != null ? "scenes/" + scenePath + value._scene + ".vcd" : null;
-                followup = getResponseThen(value._followup);
+                followup = _getResponseThen(value._followup);
             }
 
             // Check if the follow up is empty and the Cue has a defined follow up
             if (followup == null) {
-                followup = getResponseThen(cue._followup);
+                followup = _getResponseThen(cue._followup);
             }
 
             if (followup != null) {

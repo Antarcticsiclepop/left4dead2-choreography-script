@@ -1,28 +1,11 @@
-/**
-    Identifiers of all playable survivors
-*/
-local SURVIVOR_IDS = ["coach", "gambler", "producer", "mechanic", "biker", "manager", "namvet", "teengirl"];
-
-/**
-    Checks if a target is a playable survivor.
-*/
-function isSurvivor(target) {
-    return SURVIVOR_IDS.find(target.tolower()) != null;
-}
-
-/**
-    For testing purposes, prints the entire table.
-*/
-function printQuery(query) {
-    g_ModeScript.DeepPrintTable(query);
-    return true;
-}
+/** Fixes reference issues. */
+local isValidSurvivor = isSurvivor;
+local printQuery = printTable;
 
 function criteriaNotSaid(concept) {
     local recordFlag = "worldSaid" + concept;
     return [@(query) !(recordFlag in query) || recordFlag in query && query[recordFlag] != 1];
 }
-
 
 function criteriaAliveAndNear(survivorPredicate, ...) {
     local predicates = [];
@@ -36,7 +19,7 @@ function criteriaAliveAndNear(survivorPredicate, ...) {
                     vargv.len() <= 1 ? 0 : vargv[0],
                     vargv.len() == 0 ? 2056 : vargv.len() == 1 ? vargv[0] : vargv[1]
                 ];
-            } else if (!isSurvivor(survivor)) {
+            } else if (!isValidSurvivor(survivor)) {
                 error("Invalid survivor id: " + survivor + "\n");
             } else {
                 predicate["is" + survivor.tolower() + "alive"] <- [1, 1];

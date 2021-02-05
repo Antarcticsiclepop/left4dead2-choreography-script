@@ -2,10 +2,11 @@
 
 This script makes it easy to create your own dialogues between the survivors and NPCs for custom levels!
 
-Subscribe to the workshop item to starting writing dialogue scripts for your custom levels:
-https://steamcommunity.com/workshop/filedetails/?id=2382842747
+[Subscribe](https://steamcommunity.com/workshop/filedetails/?id=2382842747) to the workshop item to starting writing dialogue scripts for your custom levels.
 
-You'll need to add this addon as **Required DLC** for your dialogues to work on your custom levels!
+[![image](https://steamuserimages-a.akamaihd.net/ugc/1750180860340150359/F48B3520F51B0FB714B7E9F6126E3DD56B5C799B/)](https://steamcommunity.com/workshop/filedetails/?id=2382842747)
+
+> You'll need to add this addon as **Required DLC** for your dialogues to work on your custom levels!
 
 # Creating your dialogue script
 

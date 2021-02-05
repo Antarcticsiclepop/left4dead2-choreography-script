@@ -10,11 +10,13 @@ Concept()
 
 This is an example of a `Concept::` object with the name **InBurgerTank**, each `Concept::` object must have unique name which is used to trigger its **cues**, a `Concept::` object can have one or more `Cue::` objects. Every **cue** will be evaluated in a random arrangement when the **concept** is triggered, the first one that satify their criteras will be prompted.
 
-The `::publishCues()` function must be the last callback.
+The first **cue** of a `Sequence::` object is assocciated to the created **concept**, the remainder **cues** of the `Sequence::` object will be assocciated to a randomly generated **concept** for **followups**.
+
+> The `::publishCues()` function must be the last callback.
 
 ## **`::remarkable()`**
 
-Using this function will allow the **cues** to be triggered by an **info_remarkable** entity. When a **info_remarkable** successfully triggers a **response**, the entity will no longer trigger the **concept**, but the **concept** can used again with another **info_remarkable**. Example:
+Using this function will allow the **cues** to be triggered by an **info_remarkable** entity. Example:
 
 ```javascript
 Concept()
@@ -23,7 +25,7 @@ Concept()
     ...
 ```
 
-Usage:
+> When a **info_remarkable** enttity successfully triggers a **response**, the entity will no longer trigger the **concept**, but the **concept** can used again with another **info_remarkable**.
 
 ```javascript
 /**
@@ -40,7 +42,7 @@ remarkable(MIN_DISTANCE, MAX_DISTANCE)
 
 ## **`::triggerOnce()`**
 
-Using this function will restrict the **cues** from triggering again after any has successfully prompted a **response**. Exanple:
+Using this function will restrict the **cues** from triggering again after any has successfully prompted a **response**. Example:
 
 ```javascript
 Concept()
@@ -62,7 +64,7 @@ Concept()
 
 ## **`::criterias()`**
 
-Using this function will append additional criterias to its **cues**, this is useful to reduce repetition. Example:
+Using this function will append additional criterias to the **cues** belonging to the **concept** (won't be added to the remainder **cues** of a `Sequence::` object), this is useful to reduce repetition. Example:
 
 ```javascript
 Concept()
@@ -75,8 +77,8 @@ Concept()
 
 ## **Knowns bugs**
 
-There cannot be more than one `Cue::` object with the same survivor orator under the same `Concept::` object, the first `::Cue` object of a `Sequence::` object is assocciated **concept**, the remainder `Cue::` objects of the `Sequence::` object will be assocciated to a randomly generated **concept** for followups.
+* There cannot be more than one `Cue::` object with the same survivor orator under the same `Concept::` object.
 
-Do not combine `Cue::` objects for orator entities with survivors, there is a bug that won't randomize evaluating the **cues**.
+* Do not combine `Cue::` objects for orator entities with survivors, there is a bug that won't randomize evaluating the **cues**.
 
-You may have many `Cues::` objects under the same `Concept::` object targeting orator entities, use the function `::randomize()` to arbitrary prompt any of the **cues**. Do not use the randomize option for survivors, there will be unexpected results.
+* You may have many `Cues::` objects under the same `Concept::` object targeting orator entities, use the function `::randomize()` to arbitrary prompt any of the **cues**. Do not use the randomize option for survivors, there will be unexpected results.
