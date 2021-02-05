@@ -1,3 +1,4 @@
+/** Fixes reference issues. */
 local getRandomItem = randomItem;
 
 class ResponseThen {
@@ -7,19 +8,16 @@ class ResponseThen {
 	concept = null;
 	delay = null;
 
-	constructor(_target, _concept, _delay)
-	{
+	constructor(_target, _concept, _delay) {
 		target = _target;
 		concept = _concept;
 		delay = _delay;
 		func = executes.bindenv(this);
 	}
 	
-	function executes( speaker, query ) 
+	function executes(speaker, query) 
 	{
-		local args = [this];
-		args.extend(target);
-		local randomTarget = getRandomItem.acall(args);
+		local randomTarget = getRandomItem(target);
 		
 		if (randomTarget == "All") {
 			local expressers = ::rr_GetResponseTargets()

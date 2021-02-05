@@ -48,7 +48,7 @@ Using this function will trigger another **concept** after any of its **response
 );
 ```
 
-## **`::repeatableResponse()`**
+## **`::repeatableResponses()`**
 
 Using this function will make the **cue** prompt any **response** even if it has been recently prompted when triggered. Example:
 
@@ -58,12 +58,12 @@ Using this function will make the **cue** prompt any **response** even if it has
 .publishCues(
     Cue()
         .orator("gambler")
-        .repeatableResponse()
+        .repeatableResponses()
         ...
 );
 ```
 
-## **`::promptResponseSequentially()`**
+## **`::promptResponsesSequentially()`**
 
 Using this function will make the **cue** prompt the **responses** in sequential order rather than randomly. Example:
 
@@ -71,12 +71,12 @@ Using this function will make the **cue** prompt the **responses** in sequential
 .publishCues(
     Cue()
         .orator("gambler")
-        .promptResponseSequentially()
+        .promptResponsesSequentially()
         ...
 );
 ```
 
-## **`::promptResponseOnce()`**
+## **`::promptResponsesOnce()`**
 
 Using this function will make the **cue** prompt each **response** only once (it will not be able to prompt that **response** again). Example:
 
@@ -84,9 +84,7 @@ Using this function will make the **cue** prompt each **response** only once (it
 .publishCues(
     Cue()
         .orator("gambler")
-        .promptResponseOnce()
+        .promptResponsesOnce()
         ...
 );
 ```
-
-> There is a bug where **responses** of a **cue** will be marked as played (when using this function) even when another **cue's response** was prompted, this is because of how the game handles the **cue** execution.

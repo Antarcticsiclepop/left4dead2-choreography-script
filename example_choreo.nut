@@ -75,6 +75,8 @@ Concept()
             )
     );
 
+
+
 Concept()
     .name("VirgilGetGasResponse")
     .publishCues(
@@ -300,7 +302,7 @@ Concept()
                     .followup(
                         Followup()
                             .concept("GamblerPredictionResponse")
-                            .target("all")
+                            .target("all", "mechanic", "producer", "coach")
                     )
             )
         Sequence()
@@ -438,7 +440,7 @@ Concept()
     .criterias(
         criteriaNotSaid("ThroughHere")
     )
-    .remarkable(712)
+
     .publishCues(
         Cue()
             .orator("gambler")

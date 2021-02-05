@@ -55,7 +55,7 @@ Use a entity to trigger the following output:
 
 ```
 My output named                 <any>
-Target entities named           <func_orator_name>
+Target entities named           func_orator
 Via this input                  SpeakResponseConcept
 With a parameter override of    <concept_name>
 ```
@@ -66,7 +66,7 @@ Use a entity to trigger the following output:
 
 ```
 My output named                 <any>
-Target entities named           <info_director_name>
+Target entities named           info_director
 Via this input                  FireConceptToAny
 With a parameter override of    <concept_name>
 ```
@@ -87,8 +87,8 @@ With a parameter override of    <concept_name>
 Write a script that executes the following command:
 
 ```
-EntFire("<info_director_name>", "FireConceptToAny", "<concept_name>", 0.0);
-EntFire("<func_orator_name>", "SpeakResponseConcept", "<concept_name>", 0.0);
+EntFire("info_director", "FireConceptToAny", "<concept_name>", 0.0);
+EntFire("func_orator", "SpeakResponseConcept", "<concept_name>", 0.0);
 ```
 
 ## **By *info_remarkable* entity**
@@ -112,13 +112,13 @@ script_execute example_choreo
 For **concepts** targeting survivors (you will not be able to prompt cues for the survivor you are in control):
 
 ```
-ent_fire <info_director_name> FireConceptToAny <concept_name>
+ent_fire info_director FireConceptToAny <concept_name>
 ```
 
 For **concepts** targeting orator entities:
 
 ```
-ent_fire <func_orator_name> SpeakResponseConcept <concept_name>
+ent_fire func_orator SpeakResponseConcept <concept_name>
 ```
 
 ## **Use the game's subtitle files to find scenes**

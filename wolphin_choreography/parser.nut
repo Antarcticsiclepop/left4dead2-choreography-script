@@ -6,28 +6,43 @@ local isValidSurvivor = isSurvivor;
 local FollowupClass = Followup;
 local parserPrint = printTable;
 local ResponseThenClass = ResponseThen;
+local RuleClass = Rule;
 
 class ParserBase extends CriteriaBase {
 
     /** Parses the Concept to create Rules based on Cues and Sequences. */
     function _processConcept() {
-        local responseRules = [];
+        local rules = [];
 
         foreach (index, item in _cues) {
             if (item._className == "Sequence") {
-                responseRules.extend(_parseSequence(item, index));
+                rules.extend(_parseSequence(item, index));
             } else {
-                responseRules.append(
+                rules.append(
                     _createResponseRule(_name, _getRuleName(index), item, index)
                 );
             }
         }
 
-        g_rr.rr_ProcessRules(responseRules);
+        foreach (rule in rules) {
+            local coderule = RuleClass();
+                coderule.setRuleName(rule.name)
+                coderule.setCriteria(rule.criteria.map(g_rr.rr_ProcessCriterion.bindenv(g_rr)))
+                coderule.setResponses(rule.responses)
+                coderule.setGroupParams(rule.group_params);
+
+            foreach (r in coderule.responses) {
+                r.rule = coderule;
+            }
+
+            if( !rr_AddDecisionRule(coderule) ) {
+                throw "Failed to add rule to decision database: " + rule.name
+            }
+        }
     }
 
     function _parseSequence(sequence, index) {
-        local responseRules = [];
+        local rules = [];
         local ruleIndex = 0;
         local cues = clone sequence._cues;
         local criterias = sequence._criterias;
@@ -67,12 +82,12 @@ class ParserBase extends CriteriaBase {
 
                 // Create the Rule.
                 local responseRule = _createResponseRule(ruleConcept, ruleName + ruleIndex.tostring(), cue, index);
-                responseRules.append(responseRule);
+                rules.append(responseRule);
                 ruleIndex++;
             }
         }
 
-        return responseRules;
+        return rules;
     }
 
     function _getFollowup(followup) {
@@ -99,9 +114,9 @@ class ParserBase extends CriteriaBase {
             name = ruleName,
             criteria = clone cue._criterias,
             group_params = g_rr.RGroupParams({
-                permitrepeats = cue._repeatableResponse,
-                sequential = cue._promptResponseSequentially,
-                norepeat = cue._promptResponseOnce
+                permitrepeats = cue._repeatableResponses,
+                sequential = cue._promptResponsesSequentially,
+                norepeat = cue._promptResponsesOnce
             }),
             responses = []
         };

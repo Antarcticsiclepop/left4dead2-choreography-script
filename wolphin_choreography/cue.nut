@@ -5,9 +5,9 @@ class Cue extends CriteriaBase {
     _responses = [];
     _followup = null;
 
-    _repeatableResponse = false;
-    _promptResponseSequentially = false;
-    _promptResponseOnce = false;
+    _repeatableResponses = false;
+    _promptResponsesSequentially = false;
+    _promptResponsesOnce = false;
 
     function orator(...) {
         _functionName = "orator";
@@ -43,28 +43,28 @@ class Cue extends CriteriaBase {
         return this;
     }
 
-    function repeatableResponse(...) {
-        _functionName = "repeatableResponse";
+    function repeatableResponses(...) {
+        _functionName = "repeatableResponses";
         _validateNoParameters(vargv);
 
-        _repeatableResponse = true;
+        _repeatableResponses = true;
         return this;
     }
 
-    function promptResponseSequentially(...) {
-        _functionName = "promptResponseSequentially";
+    function promptResponsesSequentially(...) {
+        _functionName = "promptResponsesSequentially";
         _validateNoParameters(vargv);
 
-        _promptResponseSequentially = true;
-        _repeatableResponse = true;
+        _promptResponsesSequentially = true;
+        _repeatableResponses = true;
         return this;
     }
 
-    function promptResponseOnce(...) {
-        _functionName = "promptResponseOnce";
+    function promptResponsesOnce(...) {
+        _functionName = "promptResponsesOnce";
         _validateNoParameters(vargv);
 
-        _promptResponseOnce = true;
+        _promptResponsesOnce = true;
         return this;
     }
 }

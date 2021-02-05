@@ -1,16 +1,16 @@
 /**
     Get a random item from a list
 */
-function randomItem(...) {
-    if (vargv.len() == 1) {
-        return vargv[0];
+function randomItem(list) {
+    if (list.len() == 1) {
+        return list[0];
     }
 
     local randomFloat = (1.0 * rand()) / RAND_MAX;
     if (randomFloat == 1.0) {
-        return vargv[vargv.len() - 1];
+        return list[list.len() - 1];
     } else {
-        return vargv[(vargv.len() * randomFloat).tointeger()];
+        return list[(list.len() * randomFloat).tointeger()];
     }
 }
 
