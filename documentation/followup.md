@@ -40,7 +40,7 @@ Cue()
     .responses("Worldc4m117")
 ```
 
-You can add multiple orators as a target by adding a `|` symbol. Example:
+You can add multiple targets as parameters, one will be randomly chosen. Example:
 
 ```javascript
 Cue()
@@ -48,7 +48,7 @@ Cue()
     .followup(
         Followup()
             .concept("SomeNextConcept")
-            .target("gambler | producer | mechanic")
+            .target("gambler" "producer" "mechanic")
     )
     .responses("Worldc4m117")
 ```

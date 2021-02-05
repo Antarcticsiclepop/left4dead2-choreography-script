@@ -5,6 +5,7 @@ local NAN = sqrt(-1);
 local isValidSurvivor = isSurvivor;
 local FollowupClass = Followup;
 local parserPrint = printTable;
+local ResponseThenClass = ResponseThen;
 
 class ParserBase extends CriteriaBase {
 
@@ -28,7 +29,7 @@ class ParserBase extends CriteriaBase {
     function _parseSequence(sequence, index) {
         local responseRules = [];
         local ruleIndex = 0;
-        local cues = sequence._cues;
+        local cues = clone sequence._cues;
         local criterias = sequence._criterias;
         local ruleName = _getRuleName(index);
         
@@ -74,6 +75,14 @@ class ParserBase extends CriteriaBase {
         return responseRules;
     }
 
+    function _getFollowup(followup) {
+        if (type (followup) == "string") {
+            followup = FollowupClass().concept(followup);
+        }
+
+        return ResponseThenClass(followup._target, followup._concept, followup._delay);
+    }
+
     /**
         Generate a unique name for every Cue and Sequence
         from the concept name. (concept_A, concept_B, concept_C...)
@@ -81,24 +90,6 @@ class ParserBase extends CriteriaBase {
     function _getRuleName(index) {
         local suffix = "_" + (65 + index).tochar();
         return _name + suffix;
-    }
-
-    function _getResponseThen(followup) {
-        if (followup != null) {
-            if (type (followup) == "string") {
-                return {
-                    concept = followup,
-                    target = "any",
-                    delay = 0
-                };
-            } else {
-                return {
-                    concept = followup._concept,
-                    target = followup._target != null ? followup._target : "any",
-                    delay = followup._delay != null ? followup._delay : 0
-                };
-            }
-        }
     }
 
     function _createResponseRule(ruleConcept, ruleName, cue, index) {
@@ -167,8 +158,7 @@ class ParserBase extends CriteriaBase {
         }
 
         // Iterate the list of Responses.
-        foreach (value in cue._responses) {
-            local followup = null;        
+        foreach (value in cue._responses) {     
             local response = {
                 applycontext = {},
                 applycontexttoworld = true,
@@ -183,23 +173,17 @@ class ParserBase extends CriteriaBase {
                 response.scenename <- value != null ? "scenes/" + scenePath + value + ".vcd" : null;
             } else {
                 response.scenename <- value._scene != null ? "scenes/" + scenePath + value._scene + ".vcd" : null;
-                followup = _getResponseThen(value._followup);
+                if (value._followup != null) {
+                    response.followup <- _getFollowup(value._followup);
+                }
             }
 
             // Check if the follow up is empty and the Cue has a defined follow up
-            if (followup == null) {
-                followup = _getResponseThen(cue._followup);
+            if (!("followup" in response) && cue._followup != null) {
+                response.followup <- _getFollowup(cue._followup);
             }
 
-            if (followup != null) {
-                foreach (target in split(followup.target, "| ")) {
-                    local duplicateResponse = clone response;
-                    duplicateResponse.followup <- g_rr.RThen(target, followup.concept, {}, followup.delay);
-                    rule.responses.append(duplicateResponse);
-                }
-            } else {
-                rule.responses.append(response);
-            }
+            rule.responses.append(response);
         }
 
         // print("Created rule with name " + rule.name + ", concept " + ruleConcept + "\n");
