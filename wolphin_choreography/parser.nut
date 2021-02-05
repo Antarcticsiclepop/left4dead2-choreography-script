@@ -74,7 +74,7 @@ class ParserBase extends CriteriaBase {
                     cue._followups.append(
                         FollowupClass()
                             .concept(ruleName + (ruleIndex + 1).tostring())
-                            .target(cues.top()._orator)
+                            .target(cues.top()._actor)
                             .delay(delay)
                     );
                 }
@@ -164,13 +164,13 @@ class ParserBase extends CriteriaBase {
         local scenePath = "npcs/";
 
         // Check if target is not a playable survivor.
-        if (!isValidSurvivor(cue._orator)) {
-            rule.criteria.append(["name", cue._orator]);
+        if (!isValidSurvivor(cue._actor)) {
+            rule.criteria.append(["name", cue._actor]);
         } else {
-            rule.criteria.append(["who", cue._orator]);
-            rule.criteria.append(["is" + cue._orator + "alive", 1])
+            rule.criteria.append(["who", cue._actor]);
+            rule.criteria.append(["is" + cue._actor + "alive", 1])
             // Change scene path to proper survivor.
-            scenePath = cue._orator + "/";
+            scenePath = cue._actor + "/";
         }
 
         // Iterate the list of Responses.

@@ -58,8 +58,8 @@ Useful for restricting cues that require certain survivors to be alive and near 
     *        - Check if any of the following survivors are alive, ex. "gambler | mechanic"
     *        - Check if any of the following group of survivors are alive, ex. "gambler & mechanic | gambler & coach"
     *        - Check if any survivor is alive, ex. "any"
-    * @param MIN_DISTANCE Number that represents the minimum distance from the orator to another survivor
-    * @param MAX_DISTANCE Number that represents the maximum distance from the orator to another survivor
+    * @param MIN_DISTANCE Number that represents the minimum distance from the actor to another survivor
+    * @param MAX_DISTANCE Number that represents the maximum distance from the actor to another survivor
     */
     criteriaNotInDanger(SURVIVORS, MIN_DISTANCE, MAX_DISTANCE)
 )

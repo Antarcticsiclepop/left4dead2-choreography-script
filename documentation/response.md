@@ -3,7 +3,7 @@
 ```javascript
 .publishCues(
     Cue()
-        .orator("coach")
+        .actor("coach")
         .responses(
             "Worldc4m105" // Man... I sure wish the burger tank was open.
             "Worldc4m106" // I sure wish the burger tank was open.
@@ -14,7 +14,7 @@
 
 .publishCues(
     Cue()
-        .orator("coach")
+        .actor("coach")
         .responses(
             Response()
                 .scene("Worldc4m105") // Man... I sure wish the burger tank was open.
@@ -33,7 +33,7 @@ Using this function will trigger another **concept** after the **response** has 
 ```javascript
 .publishCues(
     Cue()
-        .orator("gambler")
+        .actor("gambler")
         .responses(
             Response()
                 .scene("Worldc4m117") // This is the best goddamn burger tank I’ve ever visited.

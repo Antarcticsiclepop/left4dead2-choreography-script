@@ -2,7 +2,7 @@
 
 ```javascript
 Cue()
-    .orator("gambler")
+    .actor("gambler")
     .followup(
         Followup()
             .concept("SomeNextConcept")
@@ -12,7 +12,7 @@ Cue()
 - or -
 
 Cue()
-    .orator("gambler")
+    .actor("gambler")
     .responses(
         Response()
             .scene("Worldc4m117")
@@ -27,11 +27,11 @@ A `Followup::` object will allow you to add more options after a scene has finis
 
 ## **`::target()`**
 
-Using this function will make it a **criteria** whom the orator must be for to the next **concept** . Example:
+Using this function will make it a **criteria** whom the **actor** must be for to the next **concept** . Example:
 
 ```javascript
 Cue()
-    .orator("gambler")
+    .actor("gambler")
     .followup(
         Followup()
             .concept("SomeNextConcept")
@@ -44,7 +44,7 @@ You can add multiple targets as parameters, one will be randomly chosen. Example
 
 ```javascript
 Cue()
-    .orator("gambler")
+    .actor("gambler")
     .followup(
         Followup()
             .concept("SomeNextConcept")
@@ -59,7 +59,7 @@ Using this function will add a delay before the next **concept** is triggered. E
 
 ```javascript
 Cue()
-    .orator("gambler")
+    .actor("gambler")
     .followup(
         Followup()
             .concept("SomeNextConcept")

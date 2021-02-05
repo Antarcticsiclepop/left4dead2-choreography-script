@@ -7,25 +7,25 @@ A `Sequence::` object can be used as a quick way to trigger multiple **cues** in
     Sequence()
         .cues(
             Cue()
-                .orator("coach")
+                .actor("coach")
                 .responses(           
                     "Worldc4m105" // Man... I sure wish the burger tank was open.
                     "Worldc4m106" // I sure wish the burger tank was open.
                 )
             Cue()
-                .orator("coach") // I could go for a barbecue bacon burger.
+                .actor("coach") // I could go for a barbecue bacon burger.
                 .responses("Worldc4m107")
             Cue()
-                .orator("coach")
+                .actor("coach")
                 .responses("Worldc4m108") // And a large order of fries.
             Cue()
-                .orator("coach")
+                .actor("coach")
                 .responses("Worldc4m109") // Orange soda with no ice.
             Cue()
-                .orator("coach")
+                .actor("coach")
                 .responses("Worldc4m110") // And a piece of hot apple pie.
             Cue()
-                .orator("coach")
+                .actor("coach")
                 .responses("Worldc4m111") // Goddamn I miss burger tank.
         )
 );
@@ -56,14 +56,14 @@ You can add delays between `Cue::` objects by using a `Delay::` object, example:
 Sequence()
     .cues(
         Cue()
-            .orator("coach")
+            .actor("coach")
             .responses(           
                 "Worldc4m105" // Man... I sure wish the burger tank was open.
                 "Worldc4m106" // I sure wish the burger tank was open.
             )
         Delay(2.0)
         Cue()
-            .orator("coach") // I could go for a barbecue bacon burger.
+            .actor("coach") // I could go for a barbecue bacon burger.
             .responses("Worldc4m107")
         ...
     )

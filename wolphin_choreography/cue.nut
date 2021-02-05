@@ -1,7 +1,7 @@
 class Cue extends CriteriaBase {
 
     _className = "Cue";
-    _orator = null;
+    _actor = null;
     _responses = null;
     _followups = null;
 
@@ -15,13 +15,13 @@ class Cue extends CriteriaBase {
         _followups = [];
     }
 
-    function orator(...) {
-        _functionName = "orator";
+    function actor(...) {
+        _functionName = "actor";
         _validateParameterLength(vargv, 1);
         _validateType(vargv[0], "string");
         _validateString(vargv[0]);
 
-        _orator = vargv[0];
+        _actor = vargv[0];
         return this;
     }
 

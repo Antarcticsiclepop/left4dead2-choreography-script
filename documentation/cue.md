@@ -3,14 +3,14 @@
 ```javascript
 .publishCues(
     Cue()
-        .orator("gambler")
+        .actor("gambler")
         .responses(
             ...
         )
 );
 ```
 
-This is an example of a `Cue::` object with the orator *gambler* (a.k.a. Nick), a `Cue::` object must contain one or more **responses**. A single **response** will be prompted at random if the `Cue::` object's **criterias** are met. By default, as a criteria, the orator must be alive/exist.
+This is an example of a `Cue::` object with the **actor** *gambler* (a.k.a. Nick), a `Cue::` object must contain one or more **responses**. A single **response** will be prompted at random if the `Cue::` object's **criterias** are met. By default, as a criteria, the **actor** must be alive/exist.
 
 The list of survivors names are as follows:
 
@@ -25,7 +25,7 @@ Using this function will define criterias the **cue** must meet for the **respon
 ```javascript
 .publishCues(
     Cue()
-        .orator("gambler")
+        .actor("gambler")
         .criteras(
             criteriaNotInDanger()
         )
@@ -42,7 +42,7 @@ Using this function will trigger another **concept** after any of its **response
 ```javascript
 .publishCues(
     Cue()
-        .orator("gambler")
+        .actor("gambler")
         .followups("SomeNextConcept")
         ...
 );
@@ -59,7 +59,7 @@ Using this function will make the **cue** prompt any **response** even if it has
 ```javascript
 .publishCues(
     Cue()
-        .orator("gambler")
+        .actor("gambler")
         .repeatableResponses()
         ...
 );
@@ -72,7 +72,7 @@ Using this function will make the **cue** prompt the **responses** in sequential
 ```javascript
 .publishCues(
     Cue()
-        .orator("gambler")
+        .actor("gambler")
         .promptResponsesSequentially()
         ...
 );
@@ -85,7 +85,7 @@ Using this function will make the **cue** prompt each **response** only once (it
 ```javascript
 .publishCues(
     Cue()
-        .orator("gambler")
+        .actor("gambler")
         .promptResponsesOnce()
         ...
 );

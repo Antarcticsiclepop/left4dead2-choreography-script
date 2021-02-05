@@ -4,7 +4,7 @@ Concept()
     .name("VirgilGetGas")
     .publishCues(
         Cue()
-            .orator("orator")
+            .actor("orator")
             .responses(
                 // I don’t get off the boat, y’all gonna have to get the gasoline and get back here.
                 "virgil_C4start14"
@@ -43,29 +43,29 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses("Worldc4m112") // We’ll signal him when we get back.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m113") // Do we trust that guy to come back?
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses("Worldc4m114") // Well I don’t know Nick, I learned to trust you.
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses("Worldc4m115") // So what do I know?
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses(
                         "Worldc4m114" // Fair enough, you're the first three people in the world I have ever trusted.
                         "Worldc4m115" // Shit I don’t even trust myself.
                         "Worldc4m116" // In the case, I don’t think we can trust your judgement in this matter.
                     )
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses("Worldc4m1b05") // Let’s just get this done and get back.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m109") // Good idea, storms coming.
             )
         Sequence()
@@ -75,7 +75,7 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses(
                         // Stay away from the shore until we signal ya.
                         "Worldc4m110"
@@ -85,13 +85,13 @@ Concept()
                         "Worldc4m112"
                     )
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m119") // Gas station is across the street.
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses("Worldc4m113") // Do you trust that guy?,
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses(
                         // Don’t think we’ve got much choice in the matter.
                         "Worldc4m101"
@@ -106,7 +106,7 @@ Concept()
     .name("VirgilGetGasEnd")
     .publishCues(
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -116,7 +116,7 @@ Concept()
                 "Worldc4m108" // Let’s hurry up and do this before the storm hits.
             )
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -128,7 +128,7 @@ Concept()
     .name("VirgilSignalResponse")
     .publishCues(
         Cue()
-            .orator("orator")
+            .actor("orator")
             .responses(
                 // Signal at me when you get the gas.
                 "virgil_C4start01"
@@ -145,7 +145,7 @@ Concept()
                 criteriaNotInDanger()
                 criteriaAliveAndNear("mechanic & coach")
             )
-            .orator("gambler")
+            .actor("gambler")
             .responses(
                 Response()
                     .scene("Worldc4m1b01") // What are we supposed to signal him with?
@@ -161,25 +161,25 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses("Worldc4m1b07") // We should be in and out of here, get the gas, get back to shore, signal Virgal with the flare gun in the gun bag, then we should just.. oh hell, tell me someone brought the gun bag.
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses("Worldc4m1b01") // I could tell you someone named Ellis brought the gun bug like he was supposed to, but I would be lying.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m1b06") // You didn’t grab the guns!?
                 Cue()
-                    .orator("mechanic")
+                    .actor("mechanic")
                     .responses("Worldc4m1b06") // No.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m1b04") // Great, we’re screwed.
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses("Worldc4m1b02") // I never thought I’d miss a gun so much.
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses("Worldc4m1b05") // Look here, the gas station is right across the street, we could have been back by now, come on.
             )
     );
@@ -194,22 +194,22 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("mechanic")
+                    .actor("mechanic")
                     .responses("Worldc4m1b01") // Oh there’s flares in the gun bag.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m1b02") // What gun bag?
                 Cue()
-                    .orator("mechanic")
+                    .actor("mechanic")
                     .responses("Worldc4m1b02") // You didn’t grab the guns?
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m1b03") // Me!? Who died and made me a gun monitor?
                 Cue()
-                    .orator("mechanic")
+                    .actor("mechanic")
                     .responses("Worldc4m1b04") // Pretty much everybody.
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses("Worldc4m1b01") // Look here the gas station is right across the street, we could have been back by now, come on.
             )
     );
@@ -224,25 +224,25 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses("Worldc4m1b06") // What gun bag? Oh for - Tell me we didn’t forget the guns.
                 Cue()
-                    .orator("mechanic") // You didn’t grab the gun bag?
+                    .actor("mechanic") // You didn’t grab the gun bag?
                     .responses("Worldc4m1b03")
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses("Worldc4m1b02") // Me? I told Nick to grab the guns.
                 Cue()
-                    .orator("mechanic")
+                    .actor("mechanic")
                     .responses("Worldc4m1b05") // Why didn’t you grab them?
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses(
                         "Worldc4m1b03" // Look I’m a generously proportioned man, getting off a rocking boat takes concentration.
                         "Worldc4m1b04" // Look I’m a generously proportioned man, getting off a rocking boat takes concentration.
                     ) 
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m1b07") // The gas station is right across the street, let’s just get the gas then we’ll figure out how to signal virgil.
             )
     );
@@ -251,7 +251,7 @@ Concept()
     .name("VirgilWaitGasResponse")
     .publishCues(
         Cue()
-            .orator("orator")
+            .actor("orator")
             .responses(
                 // Hurry back with the gas I’ll be waiting.
                 "virgil_C4start05"
@@ -280,16 +280,16 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses(
                         "Worldc4m101" // This should be easy.
                         "Worldc4m102" // Okay this should be easy.
                     )
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses("Worldc4m103") // We just need to grab some diesel.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m1b09") // You wanna hear a prediction?
                     .followups(
                         Followup()
@@ -304,25 +304,25 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m101") // This my friends, is a milk run.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m102") // A cake walk
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m103") // A walk in the park.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m104") // A walk in the sun.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m105") // Piece of cake.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m106") // All we need to do is get some diesel and get back on that boat.
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses("Worldc4m103") // Don’t jinx us nick.
             )
     );
@@ -331,7 +331,7 @@ Concept()
     .name("GamblerPredictionResponse")
     .publishCues(
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("gambler")
@@ -342,7 +342,7 @@ Concept()
             )
             .followups("gamblerPredictionContinue")
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("gambler")
@@ -352,7 +352,7 @@ Concept()
                 "No09"
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("gambler")
@@ -367,7 +367,7 @@ Concept()
     .name("GamblerPredictionContinue")
     .publishCues(
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -391,25 +391,25 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses(           
                         "Worldc4m105" // Man... I sure wish the burger tank was open.
                         "Worldc4m106" // I sure wish the burger tank was open.
                     )
                 Cue()
-                    .orator("coach") // I could go for a barbecue bacon burger.
+                    .actor("coach") // I could go for a barbecue bacon burger.
                     .responses("Worldc4m107")
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses("Worldc4m108") // And a large order of fries.
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses("Worldc4m109") // Orange soda with no ice.
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses("Worldc4m110") // And a piece of hot apple pie.
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses("Worldc4m111") // Goddamn I miss burger tank.
             )
         Sequence()
@@ -419,10 +419,10 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m117") // This is the best goddamn burger tank I’ve ever visited.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m118") // I hope no one minds us taking these guns.
             )
     );
@@ -435,7 +435,7 @@ Concept()
 
     .publishCues(
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -448,7 +448,7 @@ Concept()
             )
             .followups("GasPath")
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -465,7 +465,7 @@ Concept()
                     .followups("OutOfGasMarathon")
             ) 
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -496,10 +496,10 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("mechanic")
+                    .actor("mechanic")
                     .responses("Worldc4m1b07") // Out of gas.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m122") // I’m out of gas, you’re out of gas, they’re out of gas!
                     .followups("OutOfGasComplain")
             )
@@ -513,7 +513,7 @@ Concept()
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
             )
-            .orator("gambler")
+            .actor("gambler")
             .responses(
                 "Worldc4m120" // Out of gas!?
                 "OutOfGasComplain" // Of course they’re out of gas.
@@ -525,7 +525,7 @@ Concept()
     .name("OutOfGasMarathon")
     .publishCues(
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -541,7 +541,7 @@ Concept()
     .name("OutOfGasComplain")
     .publishCues(
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -549,7 +549,7 @@ Concept()
             .responses("Worldc4m1b13") // All right, quit whinin'. We just gotta hike to this Duke-atel diesel.
             .followups("DucatelDieselResponse")
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -562,7 +562,7 @@ Concept()
     .name("GasPath")
     .publishCues(
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -576,7 +576,7 @@ Concept()
                     .followups("SugarMillResponse")
             )
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any") // Looks like we're gonna have to walk to this Ducatel place.
@@ -595,10 +595,10 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m1b14") // What makes you think they still have gas?
                 Cue()
-                    .orator("coach")
+                    .actor("coach")
                     .responses("Worldc4m1b12") // Because if they don’t, we’re going to be stuck here forever Nick.
             )
         Sequence()
@@ -608,13 +608,13 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses(
                         "Worldc4m109" // It doesn’t look far.
                         "Worldc4m110" // Doesn’t look far at all.
                     )
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses(                 
                         "Worldc4m111" // Let’s hurry up and do this before the storm hits
                         "Worldc4m108" //  Let’s get this done before the storm.
@@ -632,10 +632,10 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m124") // They’ve got diesel on the sugar mill?
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses("Worldc4m107") // *kissey* C’mon boy we need to get to the old sugar mill.
                     .followups("SugarMillResponseEnd")
             )
@@ -646,16 +646,16 @@ Concept()
             )
             .cues(
                 Cue()
-                    .orator("producer")
+                    .actor("producer")
                     .responses(                   
                         "Worldc4m105" // They have diesel at the old sugar mill?
                         "Worldc4m106" // The old sugar mill? *smirk* Are you kidding me?
                     )
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m126") // If we’re going, let’s hurry.
                 Cue()
-                    .orator("gambler")
+                    .actor("gambler")
                     .responses("Worldc4m127") // Wanna beat out this storm.
             )
     );
@@ -664,7 +664,7 @@ Concept()
     .name("SugarMillResponseEnd")
     .publishCues(
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -676,7 +676,7 @@ Concept()
                 "Worldc4m1b17"
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -690,7 +690,7 @@ Concept()
     .remarkable(412)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -700,7 +700,7 @@ Concept()
                 "WorldMisc07" // Right through here.
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -710,7 +710,7 @@ Concept()
                 "MiscDirectional18" // Let's go through there!
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -720,7 +720,7 @@ Concept()
                 "MiscDirectional12" // Let's go through here!
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -736,7 +736,7 @@ Concept()
     .remarkable(228)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -746,7 +746,7 @@ Concept()
                 "MiscDirectional23" // Over that fence!
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -756,7 +756,7 @@ Concept()
                 "MiscDirectional28" // Over this fence!
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -766,7 +766,7 @@ Concept()
                 "MiscDirectional23" // Over this fence!
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -782,7 +782,7 @@ Concept()
     .remarkable(228)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -793,7 +793,7 @@ Concept()
                 "WorldMisc32" // Get up that ladder!
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -803,7 +803,7 @@ Concept()
                 "MiscDirectional24" // Up this ladder!
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -813,7 +813,7 @@ Concept()
                 "MiscDirectional18" // Up this ladder!
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -828,14 +828,14 @@ Concept()
     .name("LandmarksComment")
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
             )
             .responses("Worldc4m1b16") // Hey watch out for landmarks, maybe coming through here in a hurry on the way back.
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -845,7 +845,7 @@ Concept()
                 "Worldc4m1b18" // Alright, keep your eyes open for landmarks, we’re gonna have to come back through here.
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -854,7 +854,7 @@ Concept()
                 "Worldc4m1b22" // Look for landmarks, it might be dark on our way back.
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -869,7 +869,7 @@ Concept()
     .remarkable(820)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -879,7 +879,7 @@ Concept()
                 "Worldc4m1b18" // Hey through that playground
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -889,7 +889,7 @@ Concept()
                 "Worldc4m1b23" // Through that playground!
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -899,7 +899,7 @@ Concept()
                 "Worldc4m1b26" // Through that playground.
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -915,7 +915,7 @@ Concept()
     .remarkable(228)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -925,7 +925,7 @@ Concept()
                 "MiscDirectional14" // Through that door!
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -935,7 +935,7 @@ Concept()
                 "MiscDirectional20" // Through that door!
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -945,7 +945,7 @@ Concept()
                 "MiscDirectional14" // Through that door!
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -961,7 +961,7 @@ Concept()
     .remarkable(492)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -971,7 +971,7 @@ Concept()
                 "MiscDirectional06" // C'mon, this way!
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -981,7 +981,7 @@ Concept()
                 "Worldc4m116" // Keep going down the street.
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -992,7 +992,7 @@ Concept()
                 "Worldc4m136" // Let’s cut through this street.
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1007,7 +1007,7 @@ Concept()
     .remarkable(712)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1016,7 +1016,7 @@ Concept()
                 "Worldc4m1b19" // We can cut through this garage sale.
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1025,7 +1025,7 @@ Concept()
                 "Worldc4m1b24" // Let’s cut through the garage sale.
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1034,7 +1034,7 @@ Concept()
                 "Worldc4m1b27" // Let’s cut through the garage sale.
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1049,7 +1049,7 @@ Concept()
     .remarkable(286)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1059,7 +1059,7 @@ Concept()
                 "MiscDirectional17" // Right through that gate!
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1069,7 +1069,7 @@ Concept()
                 "MiscDirectional44" // Through this gate!
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1079,7 +1079,7 @@ Concept()
                 "MiscDirectional20" // Through this gate!
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1095,7 +1095,7 @@ Concept()
     .remarkable(224)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1105,7 +1105,7 @@ Concept()
                 "WorldC1M1B119" // Search these rooms, y'all. Might be some useful shit in some of em.
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1115,7 +1115,7 @@ Concept()
                 "WorldC2M1B10" // Check the rooms. Might be somethin' useful.
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1125,7 +1125,7 @@ Concept()
                 "WorldC2M1B14" // We better search these rooms.
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1141,7 +1141,7 @@ Concept()
     .remarkable(224)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1151,7 +1151,7 @@ Concept()
                 "MiscDirectional08" // Through that window!
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1161,7 +1161,7 @@ Concept()
                 "MiscDirectional14" // Through that window!
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1171,7 +1171,7 @@ Concept()
                 "MiscDirectional08" // Through that window!
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1187,7 +1187,7 @@ Concept()
     .remarkable(224)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1197,7 +1197,7 @@ Concept()
                 "MiscDirectional31" // We can get down there!
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1207,7 +1207,7 @@ Concept()
                 "MiscDirectional35" // We can get down there!!
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1217,7 +1217,7 @@ Concept()
                 "MiscDirectional30" // We can get down there!
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1233,7 +1233,7 @@ Concept()
     .remarkable(370)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1242,7 +1242,7 @@ Concept()
                 "WorldC4M1B27" // There's the sugar mill.
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1252,7 +1252,7 @@ Concept()
                 "WorldC4M1B28" // There's the sugar mill.
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .promptResponsesOnce()
             .criterias(
                 criteriaNotInDanger()
@@ -1265,7 +1265,7 @@ Concept()
                 "Worldc4m139" // That better be that god damn sugar mill.
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1281,7 +1281,7 @@ Concept()
     .remarkable(224)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1290,7 +1290,7 @@ Concept()
                 "Worldc4m1b20" // Dam, that was quite a wreck.
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1300,7 +1300,7 @@ Concept()
             )
             .followups("WreckCommentResponse")
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1310,7 +1310,7 @@ Concept()
             )
             .followups("WreckCommentResponse")
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1325,7 +1325,7 @@ Concept()
     .name("WreckCommentResponse")
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1341,7 +1341,7 @@ Concept()
     .remarkable(684)
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1351,7 +1351,7 @@ Concept()
                 "MiscDirectional33" // Hey, there's a safe room right up there!
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1361,7 +1361,7 @@ Concept()
                 "MiscDirectional37" // There's a safe room up there!
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1371,7 +1371,7 @@ Concept()
                 "MiscDirectional44" // There's a safe room up there
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1387,7 +1387,7 @@ Concept()
     .triggerOnce()
     .publishCues(
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1398,7 +1398,7 @@ Concept()
                 "Worldc4m1b21" // We need to move faster, I don’t wanna get trapped out here in a storm.
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1408,7 +1408,7 @@ Concept()
                 "Worldc4m112" // Storm’s coming up fast, but we should make it.
             )
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1418,7 +1418,7 @@ Concept()
                 "WorldC4M1B12" // Man, it is really startin' to pour.
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1433,7 +1433,7 @@ Concept()
     .triggerOnce()
     .publishCues(
         Cue()
-            .orator("mechanic")
+            .actor("mechanic")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1443,7 +1443,7 @@ Concept()
                 "Worldc4m1b13" // Ah, what the hell, it’s raining.
             )
         Cue()
-            .orator("coach")
+            .actor("coach")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1453,7 +1453,7 @@ Concept()
                 "Worldc4m1b17" // Ah hell, looks like a bad storm is coming.
             )
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1464,7 +1464,7 @@ Concept()
                 "Worldc4m1b20" // Shit, it looks like it’s really going to storm.
             )
         Cue()
-            .orator("producer")
+            .actor("producer")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1481,7 +1481,7 @@ Concept()
     .triggerOnce()
     .publishCues(
         Cue()
-            .orator("gambler")
+            .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
