@@ -2,7 +2,6 @@ class Concept extends ParserBase {
 
     _className = "Concept";
     _name = null;
-    _randomize = false;
     _triggerOnce = false;
     _cues = null;
     _remarkable = null;
@@ -19,14 +18,6 @@ class Concept extends ParserBase {
         _validateRange(vargv, 0, 1);
 
         _remarkable = vargv;
-        return this;
-    }
-
-    function randomize(...) {
-        _functionName = "randomize";
-        _validateNoParameters(vargv);
-
-        _randomize = true;
         return this;
     }
 

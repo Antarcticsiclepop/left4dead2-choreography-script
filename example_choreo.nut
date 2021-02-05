@@ -1,81 +1,37 @@
 IncludeScript("wolphin_choreography");
 
-local virgilInitialResponses = [
-    // I don’t get off the boat, y’all gonna have to get the gasoline and get back here.
-    "virgil_C4start14"
-    //  I don’t get off the boat, y’all gonna have to get the gas and get back here.
-    "virgil_C4start15"
-    //  I don’t get off the boat now, ya’ll gonna have to get the gasoline and get back here.
-    "virgil_C4start16"
-    // Y’all gonna have to get the gas, and come back here, I don’t get off the boat.
-    "virgil_C4start17"
-    // Ya’ll gonna get the gas and come back here, Virgil don’t get off the boat.
-    "virgil_C4start18"
-    // Virgil don’t get off the boat, ya’ll gonna have to get the gas and come back here.
-    "virgil_C4start19"
-];
-
 Concept()
     .name("VirgilGetGas")
-    .randomize()
     .publishCues(
         Cue()
             .orator("orator")
-            .responses(virgilInitialResponses)
-            .followups("VirgilGetGasResponse")
-        Sequence()
-            .cues(
-                Cue()
-                    .orator("orator")
-                    .responses(virgilInitialResponses)
-                Delay(0.5)
-                Cue()
-                    .orator("orator")
-                    .responses(
-                        // Hurry back with the gas I’ll be waiting.
-                        "virgil_C4start05"
-                        // Hurry back with the gasoline I’ll be waiting here.
-                        "virgil_C4start06"
-                        // I’ll be right here for ya now, hurry back with the gasoline.
-                        "virgil_C4start07"
-                        // Now you hurry back with that gasoline, I’ll be right here.
-                        "virgil_C4start08"
-                        // I’ll anchor the boat right here offshore looking for ya.
-                        "virgil_C4start09"
-                        // Now I’ll just be just right here offshore looking for ya.
-                        "virgil_C4start10"
-                        // Now I’ll anchor right here offshore waiting for ya.
-                        "virgil_C4start11"
-                        // I’ll anchor the boat right here offshore waiting for ya.
-                        "virgil_C4start12"
-                        // I’ll throw the anchor just offshore waiting for ya.
-                        "virgil_C4start13"
-                    )
-                    .followups("VirgilWaitGasResponse")
+            .responses(
+                // I don’t get off the boat, y’all gonna have to get the gasoline and get back here.
+                "virgil_C4start14"
+                //  I don’t get off the boat, y’all gonna have to get the gas and get back here.
+                "virgil_C4start15"
+                //  I don’t get off the boat now, ya’ll gonna have to get the gasoline and get back here.
+                "virgil_C4start16"
+                // Y’all gonna have to get the gas, and come back here, I don’t get off the boat.
+                "virgil_C4start17"
+                // Ya’ll gonna get the gas and come back here, Virgil don’t get off the boat.
+                "virgil_C4start18"
+                // Virgil don’t get off the boat, ya’ll gonna have to get the gas and come back here.
+                "virgil_C4start19"
             )
-        Sequence()
-            .cues(
-                Cue()
-                    .orator("orator")
-                    .responses(virgilInitialResponses)
-                Delay(0.5)
-                Cue()
-                    .orator("orator")
-                    .responses(
-                        // Signal at me when you get the gas.
-                        "virgil_C4start01"
-                        // Now y'all signal me when you get the gasoline now.
-                        "virgil_C4start02"
-                        // When y’all get the gasoline, signal me.
-                        "virgil_C4start03"
-                        // Signal me when you get the gasoline.
-                        "virgil_C4start04"
-                    )
-                    .followups("VirgilSignalResponse")
+            .followups(
+                Followup()
+                    .concept("VirgilGetGasResponse")
+                Followup()
+                    .concept("VirgilWaitGasResponse")
+                    .target("orator")
+                    .delay(0.5)
+                Followup()
+                    .concept("VirgilSignalResponse")
+                    .target("orator")
+                    .delay(0.5)
             )
     );
-
-
 
 Concept()
     .name("VirgilGetGasResponse")
@@ -171,6 +127,19 @@ Concept()
 Concept()
     .name("VirgilSignalResponse")
     .publishCues(
+        Cue()
+            .orator("orator")
+            .responses(
+                // Signal at me when you get the gas.
+                "virgil_C4start01"
+                // Now y'all signal me when you get the gasoline now.
+                "virgil_C4start02"
+                // When y’all get the gasoline, signal me.
+                "virgil_C4start03"
+                // Signal me when you get the gasoline.
+                "virgil_C4start04"
+            )
+            .followups("VirgilSignalResponse")
         Cue()
             .criterias(
                 criteriaNotInDanger()
@@ -281,6 +250,29 @@ Concept()
 Concept()
     .name("VirgilWaitGasResponse")
     .publishCues(
+        Cue()
+            .orator("orator")
+            .responses(
+                // Hurry back with the gas I’ll be waiting.
+                "virgil_C4start05"
+                // Hurry back with the gasoline I’ll be waiting here.
+                "virgil_C4start06"
+                // I’ll be right here for ya now, hurry back with the gasoline.
+                "virgil_C4start07"
+                // Now you hurry back with that gasoline, I’ll be right here.
+                "virgil_C4start08"
+                // I’ll anchor the boat right here offshore looking for ya.
+                "virgil_C4start09"
+                // Now I’ll just be just right here offshore looking for ya.
+                "virgil_C4start10"
+                // Now I’ll anchor right here offshore waiting for ya.
+                "virgil_C4start11"
+                // I’ll anchor the boat right here offshore waiting for ya.
+                "virgil_C4start12"
+                // I’ll throw the anchor just offshore waiting for ya.
+                "virgil_C4start13"
+            )
+            .followups("VirgilWaitGasResponse")
         Sequence()
             .criterias(
                 criteriaNotInDanger()

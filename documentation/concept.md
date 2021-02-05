@@ -78,7 +78,3 @@ Concept()
 ## **Knowns bugs**
 
 * There cannot be more than one `Cue::` object with the same survivor orator under the same `Concept::` object.
-
-* Do not combine `Cue::` objects for orator entities with survivors, there is a bug that won't randomize evaluating the **cues**.
-
-* You may have many `Cues::` objects under the same `Concept::` object targeting orator entities, use the function `::randomize()` to arbitrary prompt any of the **cues**. Do not use the randomize option for survivors, there will be unexpected results.

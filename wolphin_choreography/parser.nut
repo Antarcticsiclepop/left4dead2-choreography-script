@@ -148,15 +148,6 @@ class ParserBase extends CriteriaBase {
             } else {
                 rule.criteria.append(["concept", ruleConcept]);
             }
-
-            // Check if the concept's Rules are randomized.
-            if (_randomize) {
-                local maxNumber = _cues.len();
-                rule.criteria.append([function(query) {
-                    local random = floor(maxNumber * query.randomnum / 100);
-                    return index == (random >= maxNumber ? maxNumber - 1 : random);
-                }]);
-            }
             
             // Check if Cue should only be triggered once.
             if (onlyTriggerOnce) {
