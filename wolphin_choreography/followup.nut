@@ -3,8 +3,13 @@ class Followup extends Validateable {
 
     _className = "Followup";
     _concept = null;
-    _target = ["Any"];
+    _target = null;
     _delay = 0.0;
+
+    constructor() {
+        base.constructor()
+        _target = ["Any"];
+    }
 
     function concept(...) {
         _functionName = "concept";

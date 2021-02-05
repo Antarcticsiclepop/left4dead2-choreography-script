@@ -4,11 +4,17 @@ local getRandomItem = randomItem;
 class Rule {
 
 	rulename = null;
-	criteria = [];
-	responses = [];
+	criteria = null;
+	responses = null;
 	group_params = null;
 	next_response = 0;
-	played_responses = [];
+	played_responses = null;
+
+	constructor() {
+		criteria = [];
+		responses = [];
+		played_responses = [];
+	}
 
 	function setRuleName(_rulename) {
 		rulename = _rulename;

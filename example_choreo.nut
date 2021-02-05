@@ -22,7 +22,7 @@ Concept()
         Cue()
             .orator("orator")
             .responses(virgilInitialResponses)
-            .followup("VirgilGetGasResponse")
+            .followups("VirgilGetGasResponse")
         Sequence()
             .cues(
                 Cue()
@@ -51,7 +51,7 @@ Concept()
                         // I’ll throw the anchor just offshore waiting for ya.
                         "virgil_C4start13"
                     )
-                    .followup("VirgilWaitGasResponse")
+                    .followups("VirgilWaitGasResponse")
             )
         Sequence()
             .cues(
@@ -71,7 +71,7 @@ Concept()
                         // Signal me when you get the gasoline.
                         "virgil_C4start04"
                     )
-                    .followup("VirgilSignalResponse")
+                    .followups("VirgilSignalResponse")
             )
     );
 
@@ -142,7 +142,7 @@ Concept()
                         // He’s good people.
                         "Worldc4m102"
                     )
-                    .followup("VirgilGetGasEnd")
+                    .followups("VirgilGetGasEnd")
             )
     );
 
@@ -180,10 +180,10 @@ Concept()
             .responses(
                 Response()
                     .scene("Worldc4m1b01") // What are we supposed to signal him with?
-                    .followup("VirgilSignalRespondQuestion")
+                    .followups("VirgilSignalRespondQuestion")
                 Response()
                     .scene("Worldc4m1b05") // There’s flares in the gun bag.
-                    .followup("VirgilSignalQuestion")
+                    .followups("VirgilSignalQuestion")
             )
         Sequence()
             .criterias(
@@ -299,10 +299,10 @@ Concept()
                 Cue()
                     .orator("gambler")
                     .responses("Worldc4m1b09") // You wanna hear a prediction?
-                    .followup(
+                    .followups(
                         Followup()
                             .concept("GamblerPredictionResponse")
-                            .target("all", "mechanic", "producer", "coach")
+                            .target("all")
                     )
             )
         Sequence()
@@ -348,7 +348,7 @@ Concept()
                 "No07"
                 "No12"
             )
-            .followup("gamblerPredictionContinue")
+            .followups("gamblerPredictionContinue")
         Cue()
             .orator("mechanic")
             .criterias(
@@ -454,7 +454,7 @@ Concept()
                 // No gas, see? What a say.
                 "Worldc4m1b13"
             )
-            .followup("GasPath")
+            .followups("GasPath")
         Cue()
             .orator("producer")
             .criterias(
@@ -464,13 +464,13 @@ Concept()
             .responses(
                 Response()
                     .scene("Worldc4m104") // Empty. Gotta be another station.
-                    .followup("GasPath")
+                    .followups("GasPath")
                 Response()
                     .scene("Worldc4m1b04") // Out of gas.
-                    .followup("OutOfGasGamblerReact")
+                    .followups("OutOfGasGamblerReact")
                 Response()
                     .scene("Worldc4m1b03") // Next gas 2 miles, well shit
-                    .followup("OutOfGasMarathon")
+                    .followups("OutOfGasMarathon")
             ) 
         Cue()
             .orator("coach")
@@ -481,21 +481,21 @@ Concept()
             .responses(
                 Response()
                     .scene("Worldc4m1b08") // Next gas, two miles, looks like Virgil is going to be waiting a bit longer than he thought.
-                    .followup(
+                    .followups(
                         Followup()
                             .concept("GasPath")
                             .target("mechanic")
                     )
                 Response()
                     .scene("Worldc4m1b09") // Next gas, two miles, I hope Virgil likes waiting because it looks like we’re going for a walk.
-                    .followup(
+                    .followups(
                         Followup()
                             .concept("GasPath")
                             .target("mechanic")
                     )
                 Response()
                     .scene("Worldc4m1b10") // Out of gas… shit.
-                    .followup("OutOfGasGamblerReact")
+                    .followups("OutOfGasGamblerReact")
             )
         Sequence()
             .criterias(
@@ -509,7 +509,7 @@ Concept()
                 Cue()
                     .orator("gambler")
                     .responses("Worldc4m122") // I’m out of gas, you’re out of gas, they’re out of gas!
-                    .followup("OutOfGasComplain")
+                    .followups("OutOfGasComplain")
             )
     );
 
@@ -526,7 +526,7 @@ Concept()
                 "Worldc4m120" // Out of gas!?
                 "OutOfGasComplain" // Of course they’re out of gas.
             )
-            .followup("OutOfGasComplain")
+            .followups("OutOfGasComplain")
     );
 
 Concept()
@@ -542,7 +542,7 @@ Concept()
                 "Worldc4m1b11" // Looks like our milk-run just turned into a marathon.
                 "Worldc4m123" // There goes the milk run!
             )
-            .followup("OutOfGasComplain")
+            .followups("OutOfGasComplain")
     );
 
 Concept()
@@ -555,7 +555,7 @@ Concept()
                 criteriaAliveAndNear("any")
             )
             .responses("Worldc4m1b13") // All right, quit whinin'. We just gotta hike to this Duke-atel diesel.
-            .followup("DucatelDieselResponse")
+            .followups("DucatelDieselResponse")
         Cue()
             .orator("mechanic")
             .criterias(
@@ -563,7 +563,7 @@ Concept()
                 criteriaAliveAndNear("any")
             )
             .responses("Worldc4m1b10") // No use whinin' about it. Let's get movin'.
-            .followup("GasPath")
+            .followups("GasPath")
     );
 
 Concept()
@@ -578,10 +578,10 @@ Concept()
             .responses(
                 Response()
                     .scene("Worldc4m1b11") // Let's head to this Ducatel diesel.
-                    .followup("DucatelDieselResponse")
+                    .followups("DucatelDieselResponse")
                 Response()
                     .scene("Worldc4m113") // Let's head to the sugar mill.
-                    .followup("SugarMillResponse")
+                    .followups("SugarMillResponse")
             )
         Cue()
             .orator("mechanic")
@@ -590,7 +590,7 @@ Concept()
                 criteriaAliveAndNear("any") // Looks like we're gonna have to walk to this Ducatel place.
             )
             .responses("Worldc4m1b08")
-            .followup("DucatelDieselResponse")
+            .followups("DucatelDieselResponse")
     );
 
 Concept()
@@ -645,7 +645,7 @@ Concept()
                 Cue()
                     .orator("producer")
                     .responses("Worldc4m107") // *kissey* C’mon boy we need to get to the old sugar mill.
-                    .followup("SugarMillResponseEnd")
+                    .followups("SugarMillResponseEnd")
             )
         Sequence()
             .criterias(
@@ -1238,6 +1238,7 @@ Concept()
 
 Concept()
     .name("SugarMillSeen")
+    .remarkable(370)
     .publishCues(
         Cue()
             .orator("mechanic")
@@ -1260,7 +1261,7 @@ Concept()
             )
         Cue()
             .orator("gambler")
-            .promptResponseOnce()
+            .promptResponsesOnce()
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1305,7 +1306,7 @@ Concept()
             .responses(
                 "Worldc4m1b25" // That’s a nasty dam wreck.
             )
-            .followup("WreckCommentResponse")
+            .followups("WreckCommentResponse")
         Cue()
             .orator("gambler")
             .criterias(
@@ -1315,7 +1316,7 @@ Concept()
             .responses(
                 "Worldc4m1b28" // Now that is a nasty wreck.
             )
-            .followup("WreckCommentResponse")
+            .followups("WreckCommentResponse")
         Cue()
             .orator("producer")
             .criterias(
@@ -1325,7 +1326,7 @@ Concept()
             .responses(
                 "Worldc4m1b13" // Now that is a nasty wreck.
             )
-            .followup("WreckCommentResponse")
+            .followups("WreckCommentResponse")
     );
 
 Concept()

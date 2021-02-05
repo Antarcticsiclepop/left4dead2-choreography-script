@@ -4,6 +4,7 @@ class Delay extends Validateable {
     _delay = null;
 
     constructor(...) {
+        base.constructor();
         _functionName = "constructor";
         _validateParameterLength(vargv, 1);
         _validateType(vargv[0], "integer", "float");

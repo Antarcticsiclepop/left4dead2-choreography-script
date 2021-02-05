@@ -35,7 +35,7 @@ Using this function will define criterias the **cue** must meet for the **respon
 
 > There is a bug where **cues** with more criterias will have higher priority when evaluating, it's recommended to keep the same amount of criteras for all `Cue::` objects.
 
-## **`::followup()`**
+## **`::followups()`**
 
 Using this function will trigger another **concept** after any of its **responses** has successfully prompted. Example:
 
@@ -43,10 +43,12 @@ Using this function will trigger another **concept** after any of its **response
 .publishCues(
     Cue()
         .orator("gambler")
-        .followup("SomeNextConcept")
+        .followups("SomeNextConcept")
         ...
 );
 ```
+
+> You can have more than one `Followup::` object, only one will trigger.
 
 ## **`::repeatableResponses()`**
 

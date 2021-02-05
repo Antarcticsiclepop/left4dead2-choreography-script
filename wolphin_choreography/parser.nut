@@ -10,6 +10,10 @@ local RuleClass = Rule;
 
 class ParserBase extends CriteriaBase {
 
+    constructor() {
+        base.constructor();
+    }
+
     /** Parses the Concept to create Rules based on Cues and Sequences. */
     function _processConcept() {
         local rules = [];
@@ -67,7 +71,7 @@ class ParserBase extends CriteriaBase {
                         delay = cues.pop()._delay;
                     }
 
-                    cue.followup(
+                    cue._followups.append(
                         FollowupClass()
                             .concept(ruleName + (ruleIndex + 1).tostring())
                             .target(cues.top()._orator)
@@ -90,12 +94,18 @@ class ParserBase extends CriteriaBase {
         return rules;
     }
 
-    function _getFollowup(followup) {
-        if (type (followup) == "string") {
-            followup = FollowupClass().concept(followup);
-        }
+    function _getFollowups(followups) {
+        return ResponseThenClass(followups.map(function (value) {
+            if (type (value) == "string") {
+                value = FollowupClass().concept(value);
+            }
 
-        return ResponseThenClass(followup._target, followup._concept, followup._delay);
+            return {
+                target = value._target,
+                concept = value._concept,
+                delay = value._delay
+            };
+        }));
     }
 
     /**
@@ -188,14 +198,14 @@ class ParserBase extends CriteriaBase {
                 response.scenename <- value != null ? "scenes/" + scenePath + value + ".vcd" : null;
             } else {
                 response.scenename <- value._scene != null ? "scenes/" + scenePath + value._scene + ".vcd" : null;
-                if (value._followup != null) {
-                    response.followup <- _getFollowup(value._followup);
+                if (value._followups.len() > 0) {
+                    response.followup <- _getFollowups(value._followups);
                 }
             }
 
             // Check if the follow up is empty and the Cue has a defined follow up
-            if (!("followup" in response) && cue._followup != null) {
-                response.followup <- _getFollowup(cue._followup);
+            if (!("followup" in response) && cue._followups.len() > 0) {
+                response.followup <- _getFollowups(cue._followups);
             }
 
             rule.responses.append(response);

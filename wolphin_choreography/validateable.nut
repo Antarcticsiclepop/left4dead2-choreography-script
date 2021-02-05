@@ -2,6 +2,8 @@ class Validateable {
 
     _functionName = null;
 
+    constructor() { }
+
     function _getReference() {
         return _className + "::" + _functionName + "()";
     }

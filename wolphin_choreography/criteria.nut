@@ -1,6 +1,11 @@
 class CriteriaBase extends Validateable {
 
-    _criterias = [];
+    _criterias = null;
+
+    constructor() {
+        base.constructor();
+        _criterias = [];
+    }
 
     function criterias(...) {
         _functionName = "criterias";

@@ -4,49 +4,47 @@ local getRandomItem = randomItem;
 class ResponseThen {
 
 	func = null;
-	target = null;
-	concept = null;
-	delay = null;
+	delay = 0.0;
+	followups = null;
 
-	constructor(_target, _concept, _delay) {
-		target = _target;
-		concept = _concept;
-		delay = _delay;
+	constructor(_followups) {
+		followups = _followups;
 		func = executes.bindenv(this);
 	}
 	
 	function executes(speaker, query) 
 	{
-		local randomTarget = getRandomItem(target);
+		local followup = getRandomItem(followups);
+		local target = getRandomItem(followup.target);
 		
-		if (randomTarget == "All") {
+		if (target == "All") {
 			local expressers = ::rr_GetResponseTargets()
 			foreach (name, recipient in expressers) {
-				DoEntFire("!self", "SpeakResponseConcept", concept, delay, null, recipient);
+				DoEntFire("!self", "SpeakResponseConcept", followup.concept, followup.delay, null, recipient);
 			}
-		} else if (randomTarget == "Any") {
-			EntFire("info_director", "FireConceptToAny", concept, delay);
-		} else if (randomTarget == "Self") {
-			DoEntFire("!self", "SpeakResponseConcept", concept, delay, null, speaker);
+		} else if (target == "Any") {
+			EntFire("info_director", "FireConceptToAny", followup.concept, followup.delay);
+		} else if (target == "Self") {
+			DoEntFire("!self", "SpeakResponseConcept", followup.concept, followup.delay, null, speaker);
 		}
-		else if (randomTarget == "Subject") {
+		else if (target == "Subject") {
 			local expressers = ::rr_GetResponseTargets()
 			if (query.subject in expressers) {
-                DoEntFire("!self", "SpeakResponseConcept", concept, delay, null, expressers[query.subject]);
+                DoEntFire("!self", "SpeakResponseConcept", followup.concept, followup.delay, null, expressers[query.subject]);
             }	
-		} else if (randomTarget == "From") {
+		} else if (target == "From") {
 			local expressers = ::rr_GetResponseTargets();
 			if (query.from in expressers) {
-                DoEntFire("!self", "SpeakResponseConcept", concept, delay, null, expressers[query.from]);
+                DoEntFire("!self", "SpeakResponseConcept", followup.concept, followup.delay, null, expressers[query.from]);
             }
-		} else if (randomTarget == "Orator") {
-			EntFire("func_orator", "SpeakResponseConcept", concept, 0);
+		} else if (target == "Orator") {
+			EntFire("func_orator", "SpeakResponseConcept", followup.concept, 0);
 		} else {	
 			local expressers = ::rr_GetResponseTargets()
-			if (randomTarget in expressers) {
-				DoEntFire("!self", "SpeakResponseConcept", concept, delay, null, expressers[randomTarget]);
+			if (target in expressers) {
+				DoEntFire("!self", "SpeakResponseConcept", followup.concept, followup.delay, null, expressers[target]);
 			} else {
-				printl("Wolphin Choreography Script warning: couldn't find randomTarget: " + randomTarget);
+				printl("ResponseThen::executes() couldn't find target: " + target);
 			}
 		}
     }

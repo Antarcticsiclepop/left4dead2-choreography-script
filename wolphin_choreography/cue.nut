@@ -2,12 +2,18 @@ class Cue extends CriteriaBase {
 
     _className = "Cue";
     _orator = null;
-    _responses = [];
-    _followup = null;
+    _responses = null;
+    _followups = null;
 
     _repeatableResponses = false;
     _promptResponsesSequentially = false;
     _promptResponsesOnce = false;
+
+    constructor() {
+        base.constructor();
+        _responses = [];
+        _followups = [];
+    }
 
     function orator(...) {
         _functionName = "orator";
@@ -34,12 +40,11 @@ class Cue extends CriteriaBase {
     }
 
 
-    function followup(...) {
-        _functionName = "followup";
-        _validateParameterLength(vargv, 1);
-        _validateType(vargv[0], "string", "Followup");
+    function followups(...) {
+        _functionName = "followups";
+        _validateArrayType(vargv, "string", "Followup");
 
-        _followup = vargv[0];
+        _followups = vargv;
         return this;
     }
 
@@ -72,7 +77,12 @@ class Cue extends CriteriaBase {
 class Sequence extends CriteriaBase {
 
     _className = "Sequence";
-    _cues = [];
+    _cues = null;
+
+    constructor() {
+        base.constructor();
+        _cues = [];
+    }
 
     function cues(...) {
         _functionName = "cues";

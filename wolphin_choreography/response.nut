@@ -2,7 +2,12 @@ class Response extends Validateable {
 
     _className = "Response";
     _scene = null;
-    _followup = null;
+    _followups = null;
+
+    constructor() {
+        base.constructor()
+        _followups = [];
+    }
 
     function scene(...) {
         _functionName = "scene";
@@ -14,12 +19,11 @@ class Response extends Validateable {
         return this;
     }
 
-    function followup(...) {
-        _functionName = "followup";
-        _validateParameterLength(vargv, 1);
-        _validateType(vargv[0], "string", "Followup");
+    function followups(...) {
+        _functionName = "followups";
+        _validateArrayType(vargv, "string", "Followup");
 
-        _followup = vargv[0];
+        _followups = vargv;
         return this;
     }
 }

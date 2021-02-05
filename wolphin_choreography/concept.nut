@@ -8,6 +8,10 @@ class Concept extends ParserBase {
     _remarkable = null;
     _record = false;
 
+    constructor() {
+        base.constructor();
+    }
+
     function remarkable(...) {
         _functionName = "remarkable";
         _validateParameterLength(vargv, 2);
