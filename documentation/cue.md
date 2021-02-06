@@ -37,13 +37,28 @@ Using this function will define criterias the **cue** must meet for the **respon
 
 ## **`::followups()`**
 
-Using this function will trigger another **concept** after any of its **responses** has successfully prompted. Example:
+Using this function will trigger another **concept** after any of its **responses** has successfully prompted. The **followups** of the `Cue::` object will not be overwrite the **followups** of the `Response::` object. Example:
 
 ```javascript
 .publishCues(
     Cue()
         .actor("gambler")
         .followups("SomeNextConcept")
+        ...
+);
+```
+
+> You can have more than one `Followup::` object, only one will trigger.
+
+## **`::callback()`**
+
+Using this function will allow you to provide a callback function that will execute after any of the **responses** has prompted. The **callback** of the `Cue::` object will not be overwrite the **callback** of the `Response::` object. Example:
+
+```javascript
+.publishCues(
+    Cue()
+        .actor("gambler")
+        .callback(@() printl("Hello world!"))
         ...
 );
 ```

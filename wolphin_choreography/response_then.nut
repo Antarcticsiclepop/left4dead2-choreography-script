@@ -6,13 +6,27 @@ class ResponseThen {
 	func = null;
 	delay = 0.0;
 	followups = null;
+	callback = null;
 
-	constructor(_followups) {
-		followups = _followups;
+	constructor() {
+		followups = [];
 		func = executes.bindenv(this);
 	}
 
+	function setFollowups(_followups) {
+		followups = _followups;
+		return this;
+	}
+
+	function setCallback(_callback) {
+		callback = _callback;
+		return this;
+	}
+
 	function executes(speaker, query) {
+		if (callback != null) callback();
+		if (followups.len() == 0) return;
+
 		local followup = getRandomItem(followups);
 		local target = getRandomItem(followup.target);
 		

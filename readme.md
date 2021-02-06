@@ -20,12 +20,12 @@ IncludeScript("wolphin_choreography");
 
 Click the links below to learn how to create dialogues:
 
-* [Writing a `Concept` object](documentation/concept.md)
-* [Writing a `Cue` object](documentation/cue.md)
-* [Writing a `Response` object](documentation/response.md)
-* [Writing a `Followup` object](documentation/followup.md)
-* [Writing a `Sequence` object](documentation/sequence.md)
-* [Writing criterias](documentation/criterias.md)
+* [Writing a `Concept` object](documentation/concept.md) 🎬
+    * [Writing a `Cue` object](documentation/cue.md)
+    * [Writing a `Sequence` object](documentation/sequence.md)
+        * [Writing `Criterias`](documentation/criterias.md)
+        * [Writing a `Response` object](documentation/response.md) 📣
+        * [Writing a `Followup` object](documentation/followup.md)
 
 # Loading your dialogue script in your custom level
 

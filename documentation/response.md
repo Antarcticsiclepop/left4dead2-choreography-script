@@ -42,6 +42,22 @@ Using this function will trigger another **concept** after the **response** has 
 );
 ```
 
-This is useful when you need different **followups** for every **response**. The **followup** of the `Response::` object will not be overwritten by the **followup** of the `Cue::`.
+This is useful when you need different **followups** for every **response**.
 
 > You can have more than one `Followup::` object, only one will trigger.
+
+## **`::callback()`**
+
+Using this function will allow you to provide a callback function that will execute after a **response** prompt has ended. Example:
+
+```javascript
+.publishCues(
+    Cue()
+        .actor("gambler")
+        .responses(
+            Response()
+                .scene("Worldc4m117") // This is the best goddamn burger tank I’ve ever visited.
+                .callback(@() printl("Hello world!"))
+        )
+);
+```

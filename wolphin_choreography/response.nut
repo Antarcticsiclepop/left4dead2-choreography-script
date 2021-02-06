@@ -3,6 +3,7 @@ class Response extends Validateable {
     _className = "Response";
     _scene = null;
     _followups = null;
+    _callback = null;
 
     constructor() {
         base.constructor()
@@ -24,6 +25,15 @@ class Response extends Validateable {
         _validateArrayType(vargv, "string", "Followup");
 
         _followups = vargv;
+        return this;
+    }
+
+    function callback(...) {
+        _functionName = "callback";
+        _validateParameterLength(vargv, 1);
+        _validateType(vargv[0], "function");
+
+        _callback = vargv[0];
         return this;
     }
 }

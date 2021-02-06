@@ -71,7 +71,7 @@ class ParserBase extends CriteriaBase {
     }
 
     function _getFollowups(followups) {
-        return ResponseThenClass(followups.map(function (value) {
+        return followups.map(function (value) {
             if (type (value) == "string") {
                 value = FollowupClass().concept(value);
             }
@@ -81,7 +81,7 @@ class ParserBase extends CriteriaBase {
                 concept = value._concept,
                 delay = value._delay
             };
-        }));
+        });
     }
 
     /**
@@ -146,6 +146,7 @@ class ParserBase extends CriteriaBase {
             local response = {
                 applycontext = {},
                 applycontexttoworld = true,
+                followup = ResponseThenClass()
             };
 
             if (onlyTriggerOnce || recordConcept) {
@@ -157,14 +158,23 @@ class ParserBase extends CriteriaBase {
                 response.scenename <- value != null ? "scenes/" + scenePath + value + ".vcd" : null;
             } else {
                 response.scenename <- value._scene != null ? "scenes/" + scenePath + value._scene + ".vcd" : null;
+
+                if (value._callback != null) {
+                    response.followup.setCallback(value._callback);
+                }
+
                 if (value._followups.len() > 0) {
-                    response.followup <- _getFollowups(value._followups);
+                    response.followup.setFollowups(_getFollowups(value._followups));
                 }
             }
 
+            if (response.followup.callback == null && cue._callback != null) {
+                response.followup.setCallback(cue._callback);
+            }
+
             // Check if the follow up is empty and the Cue has a defined follow up
-            if (!("followup" in response) && cue._followups.len() > 0) {
-                response.followup <- _getFollowups(cue._followups);
+            if (response.followup.followups.len() == 0 && cue._followups.len() > 0) {
+                response.followup.setFollowups(_getFollowups(cue._followups));
             }
 
             responses.append(response);
