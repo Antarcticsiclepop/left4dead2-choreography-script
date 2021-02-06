@@ -74,7 +74,3 @@ Concept()
     )
     ...
 ```
-
-## **Knowns bugs**
-
-* There cannot be more than one `Cue::` object with the same **actor** under the same `Concept::` object.

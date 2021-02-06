@@ -1229,8 +1229,23 @@ Concept()
     );
 
 Concept()
+    .name("PlayerNegative")
+    .publishCues(
+        Cue()
+            .actor("gambler")
+            .criterias(
+                criteriaNotInDanger()
+                criteriaAliveAndNear("any")
+            )
+            .responses(
+                "Grenade04"
+            )
+            .callback(@() DropFire(Entities.FindByModel(null,"models/survivors/survivor_gambler.mdl").GetOrigin()))
+    )
+
+Concept()
     .name("SugarMillSeen")
-    .remarkable(370)
+    // .remarkable(370)
     .publishCues(
         Cue()
             .actor("mechanic")
@@ -1253,7 +1268,6 @@ Concept()
             )
         Cue()
             .actor("gambler")
-            .promptResponsesOnce()
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
@@ -1264,6 +1278,7 @@ Concept()
                 "Worldc4m131" // Let’s head towards the smoke stack.
                 "Worldc4m139" // That better be that god damn sugar mill.
             )
+            .callback(@() printl("Hello world!"))
         Cue()
             .actor("producer")
             .criterias(

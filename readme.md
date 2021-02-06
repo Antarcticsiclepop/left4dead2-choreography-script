@@ -2,11 +2,11 @@
 
 This script makes it easy to create your own dialogues between the survivors and NPCs for custom levels!
 
-[Subscribe](https://steamcommunity.com/workshop/filedetails/?id=2382842747) to the workshop item to starting writing dialogue scripts for your custom levels.
-
 [![image](https://steamuserimages-a.akamaihd.net/ugc/1750180860340150359/F48B3520F51B0FB714B7E9F6126E3DD56B5C799B/)](https://steamcommunity.com/workshop/filedetails/?id=2382842747)
 
-> You'll need to add this addon as **Required DLC** for your dialogues to work on your custom levels!
+> [Subscribe](https://steamcommunity.com/workshop/filedetails/?id=2382842747) to the workshop item to starting writing dialogue scripts for your custom levels.
+
+> You'll need to add this addon as **required workshop item** for your dialogues to work on your custom levels!
 
 # Creating your dialogue script
 
@@ -110,13 +110,16 @@ script_execute example_choreo
 ## **How to trigger a concept from console**
 
 For **concepts** targeting survivors (you will not be able to prompt cues for the survivor you are in control):
-
 ```
 ent_fire info_director FireConceptToAny <concept_name>
 ```
 
-For **concepts** targeting orator entities:
+To trigger a **concept** for the current survivor you are in control:
+```
+ent_fire !self SpeakResponseConcept <concept_name>
+```
 
+For **concepts** targeting orator entities:
 ```
 ent_fire func_orator SpeakResponseConcept <concept_name>
 ```
