@@ -429,10 +429,10 @@ Concept()
 
 Concept()
     .name("OutOfGas")
+    .remarkable(712)
     .criterias(
         criteriaNotSaid("ThroughHere")
     )
-
     .publishCues(
         Cue()
             .actor("gambler")

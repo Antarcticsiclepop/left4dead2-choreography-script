@@ -1,7 +1,7 @@
 /** Fixes reference issues. */
 local getRandomItem = randomItem;
 
-class Rule {
+class ResponseRule {
 
 	rulename = null;
 	criteria = null;
@@ -18,23 +18,31 @@ class Rule {
 
 	function setRuleName(_rulename) {
 		rulename = _rulename;
+		return this;
 	}
 
 	function setCriteria(_criteria) {
-		criteria = _criteria;
+		criteria = _criteria.map(g_rr.rr_ProcessCriterion.bindenv(g_rr));
+		return this;
 	}
 
 	function setResponses(_responses) {
+		local processedRules = [];
 		foreach (index, response in _responses) {
 			response.func <- PlayedResponse(index);
+			local processedRule = g_rr.rr_ProcessResponse.bindenv(g_rr)(response);
+			processedRule.rule = this;
+			processedRules.append(processedRule);
 		}
 
-		responses = _responses.map(g_rr.rr_ProcessResponse.bindenv(g_rr));
-		played_responses = _responses.map(@(value) false);
+		responses = processedRules;
+		played_responses = processedRules.map(@(value) false);
+		return this;
 	}
 
 	function setGroupParams(_group_params) {
-		group_params = _group_params;
+		group_params = g_rr.RGroupParams(_group_params);
+		return this;
 	}
 
 	function PlayedResponse(index) {

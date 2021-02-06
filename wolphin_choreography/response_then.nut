@@ -11,9 +11,8 @@ class ResponseThen {
 		followups = _followups;
 		func = executes.bindenv(this);
 	}
-	
-	function executes(speaker, query) 
-	{
+
+	function executes(speaker, query) {
 		local followup = getRandomItem(followups);
 		local target = getRandomItem(followup.target);
 		

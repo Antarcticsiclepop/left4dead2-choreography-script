@@ -6,7 +6,7 @@ local isValidSurvivor = isSurvivor;
 local FollowupClass = Followup;
 local parserPrint = printTable;
 local ResponseThenClass = ResponseThen;
-local RuleClass = Rule;
+local ResponseRuleClass = ResponseRule;
 
 class ParserBase extends CriteriaBase {
 
@@ -14,39 +14,18 @@ class ParserBase extends CriteriaBase {
         base.constructor();
     }
 
-    /** Parses the Concept to create Rules based on Cues and Sequences. */
+    /** Parses the Concept to create ResponseRules based on Cues and Sequences. */
     function _processConcept() {
-        local rules = [];
-
         foreach (index, item in _cues) {
             if (item._className == "Sequence") {
-                rules.extend(_parseSequence(item, index));
+                _parseSequence(item, index);
             } else {
-                rules.append(
-                    _createResponseRule(_name, _getRuleName(index), item, index)
-                );
-            }
-        }
-
-        foreach (rule in rules) {
-            local coderule = RuleClass();
-                coderule.setRuleName(rule.name)
-                coderule.setCriteria(rule.criteria.map(g_rr.rr_ProcessCriterion.bindenv(g_rr)))
-                coderule.setResponses(rule.responses)
-                coderule.setGroupParams(rule.group_params);
-
-            foreach (r in coderule.responses) {
-                r.rule = coderule;
-            }
-
-            if( !rr_AddDecisionRule(coderule) ) {
-                throw "Failed to add rule to decision database: " + rule.name
+                _createResponseRule(_name, _getRuleName(index), item, index)
             }
         }
     }
 
     function _parseSequence(sequence, index) {
-        local rules = [];
         local ruleIndex = 0;
         local cues = clone sequence._cues;
         local criterias = sequence._criterias;
@@ -79,19 +58,16 @@ class ParserBase extends CriteriaBase {
                     );
                 }
 
-                // Append the Sequence's Criterias to Rules when empty.
+                // Append the Sequence's Criterias to ResponseRules when empty.
                 if (cue._criterias.len() == 0 && criterias.len() > 0) {
                     cue.criterias(criterias);
                 }
 
-                // Create the Rule.
-                local responseRule = _createResponseRule(ruleConcept, ruleName + ruleIndex.tostring(), cue, index);
-                rules.append(responseRule);
+                // Create the ResponseRule.
+                _createResponseRule(ruleConcept, ruleName + ruleIndex.tostring(), cue, index);
                 ruleIndex++;
             }
         }
-
-        return rules;
     }
 
     function _getFollowups(followups) {
@@ -118,18 +94,10 @@ class ParserBase extends CriteriaBase {
     }
 
     function _createResponseRule(ruleConcept, ruleName, cue, index) {
+        local criteria = clone cue._criterias;
+        local responses = [];
         local onlyTriggerOnce = false;
         local recordConcept = false;
-        local rule = {
-            name = ruleName,
-            criteria = clone cue._criterias,
-            group_params = g_rr.RGroupParams({
-                permitrepeats = cue._repeatableResponses,
-                sequential = cue._promptResponsesSequentially,
-                norepeat = cue._promptResponsesOnce
-            }),
-            responses = []
-        };
 
         // Check if Cue is triggered by original concept name.
         if (ruleConcept == _name) {
@@ -138,26 +106,26 @@ class ParserBase extends CriteriaBase {
 
             // Check if Cue is remarkable.
             if (_remarkable != null) {
-                rule.criteria.append(["concept", "TLK_REMARK"]);
-                rule.criteria.append(["subject", ruleConcept]);
-                rule.criteria.append(["distance",
+                criteria.append(["concept", "TLK_REMARK"]);
+                criteria.append(["subject", ruleConcept]);
+                criteria.append(["distance",
                     _remarkable.len() == 1 ? 0 : _remarkable[0],
                     _remarkable.len() == 1  ? _remarkable[0] : _remarkable[1]
                 ]);
-                rule.criteria.append(["speaking", 0]);
+                criteria.append(["speaking", 0]);
             } else {
-                rule.criteria.append(["concept", ruleConcept]);
+                criteria.append(["concept", ruleConcept]);
             }
             
             // Check if Cue should only be triggered once.
             if (onlyTriggerOnce) {
                 local remarkFlag = "worldSaid" + ruleConcept;
-                rule.criteria.append([@(query) !(remarkFlag in query) || remarkFlag in query && query[remarkFlag] != 1]);
+                criteria.append([@(query) !(remarkFlag in query) || remarkFlag in query && query[remarkFlag] != 1]);
             }
 
-            rule.criteria.extend(_criterias);
+            criteria.extend(_criterias);
         } else {
-            rule.criteria.append(["concept", ruleConcept])
+            criteria.append(["concept", ruleConcept])
         }
 
         // Initial scene path
@@ -165,10 +133,10 @@ class ParserBase extends CriteriaBase {
 
         // Check if target is not a playable survivor.
         if (!isValidSurvivor(cue._actor)) {
-            rule.criteria.append(["name", cue._actor]);
+            criteria.append(["name", cue._actor]);
         } else {
-            rule.criteria.append(["who", cue._actor]);
-            rule.criteria.append(["is" + cue._actor + "alive", 1])
+            criteria.append(["who", cue._actor]);
+            criteria.append(["is" + cue._actor + "alive", 1])
             // Change scene path to proper survivor.
             scenePath = cue._actor + "/";
         }
@@ -199,11 +167,24 @@ class ParserBase extends CriteriaBase {
                 response.followup <- _getFollowups(cue._followups);
             }
 
-            rule.responses.append(response);
+            responses.append(response);
         }
 
+        local responseRule = ResponseRuleClass()
+            .setRuleName(ruleName)
+            .setGroupParams({
+                permitrepeats = cue._repeatableResponses,
+                sequential = cue._promptResponsesSequentially,
+                norepeat = cue._promptResponsesOnce
+            })
+            .setCriteria(criteria)
+            .setResponses(responses);
+
         // print("Created rule with name " + rule.name + ", concept " + ruleConcept + "\n");
-        return rule;
+
+        if (!rr_AddDecisionRule(responseRule)) {
+            throw "Failed to add rule to decision database: " + rule.name;
+        }
     }
 }
 
