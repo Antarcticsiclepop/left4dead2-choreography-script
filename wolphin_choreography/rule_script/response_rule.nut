@@ -15,18 +15,6 @@ class ResponseRule {
 		params = _params;
 	}
 
-	function setResponses(_responses) {
-		local processedRules = [];
-		foreach (index, response in _responses) {
-			response.func <- PlayedResponse(index);
-			local processedRule = g_rr.rr_ProcessResponse.bindenv(g_rr)(response);
-			processedRule.rule = this;
-			processedRules.append(processedRule);
-		}
-
-		responses = processedRules;
-	}
-
 	function PlayedResponse(index, callback) {
 		return (function (speaker, query) {
 			played_responses[index] = true;
