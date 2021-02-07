@@ -62,7 +62,7 @@ With a parameter override of    <concept_name>
 
 ## **By *info_director* entity**
 
-Use a entity to trigger the following output:
+Use a entity to trigger the following output (only targets survivors):
 
 ```
 My output named                 <any>
@@ -135,7 +135,7 @@ You can use the subtitle files of the game to find scenes you are looking for an
 
 ## **Trigger sounds with responses**
 
-I have provided two useful functions to use with the `:callback()` function:
+I have provided two useful functions to use with the `::callback()` function:
 
 ### **`::emitSound()`**
 

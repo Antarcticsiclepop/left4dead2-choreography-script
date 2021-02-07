@@ -35,7 +35,7 @@ Cue()
     .followup(
         Followup()
             .concept("SomeNextConcept")
-            .target("gambler")
+            .target("self")
     )
     .responses("Worldc4m117")
 ```
@@ -43,15 +43,21 @@ Cue()
 You can add multiple targets as parameters, one will be randomly chosen. Example:
 
 ```javascript
-Cue()
-    .actor("gambler")
-    .followup(
-        Followup()
-            .concept("SomeNextConcept")
-            .target("gambler" "producer" "mechanic")
-    )
-    .responses("Worldc4m117")
+Followup()
+    .concept("SomeNextConcept")
+    .target("gambler" "producer" "orator")
 ```
+
+### **List of targets**
+
+* `<survivor_name>` - Target a specific survivor.
+* `<orator_name>` - Target a specific func_orator.
+* `all` - Target all speakers (survivor and func_orator).
+* `self` - Target the same speaker from the response (survivor or func_orator).
+* `any` - Target any survivor. Default option.
+* `subject`
+* `from`
+* `func_orator` - Target the first func_orator found.
 
 ## **`::delay()`**
 

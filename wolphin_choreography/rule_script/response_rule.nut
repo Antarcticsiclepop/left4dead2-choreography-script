@@ -15,16 +15,12 @@ class ResponseRule {
 		params = _params;
 	}
 
-	function PlayedResponse(index, callback) {
+	function PlayedResponse(index) {
 		return (function (speaker, query) {
 			played_responses[index] = true;
 
 			if (params.matchOnce || params.promptResponsesOnce && played_responses.filter(@(index, value) !value).len() == 0) {
 				Disable(speaker, query);
-			}
-
-			if (callback != null) {
-				callback(speaker, query);
 			}
 		}).bindenv(this);
 	}

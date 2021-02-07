@@ -31,16 +31,7 @@ class Followup extends Validateable {
 
         _validateArrayType(vargv, "string");
 
-        _target = vargv.map(function (value) {
-            if (value.tolower() == "namvet")
-                return "NamVet";
-            else if (value.tolower() == "teengirl")
-                return "TeenGirl";
-            else {
-                return value.slice(0,1).toupper() + value.slice(1);
-            }
-        });
-
+        _target = vargv;
         return this;
     }
 

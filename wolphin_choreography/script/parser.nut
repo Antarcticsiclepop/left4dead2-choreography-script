@@ -142,12 +142,7 @@ class ParserBase extends Validateable {
             cue._matchOnce
         );
 
-        local responseRule = WCScript.ResponseRule(
-            ruleName,
-            criterias.map(WCScript.convertToCriterion),
-            [],
-            responseRuleParams
-        );
+        local responseRule = WCScript.ResponseRule(ruleName, criterias.map(WCScript.convertToCriterion), [], responseRuleParams);
 
         // Iterate the list of Responses.
         foreach (index, response in cue._responses) {
@@ -167,45 +162,30 @@ class ParserBase extends Validateable {
     }
 
     function _createSingleResponse(index, response, cue, applyContext, responseRule) {
-        local callback = null;
-        local applycontext = {};
+        local callbackList = [responseRule.PlayedResponse(index)];
         local scene = null;
         local responseThen = null;
         local scenePath = WCScript.isSurvivor(cue._actor) ? cue._actor + "/" : "npcs/";
 
-        // Check if the Response is just a string.
-        if (type (response) == "string" || response == null) {
-            scene = response != null ? "scenes/" + scenePath + response + ".vcd" : null;
-        } else if (response instanceof WCScript.Response) {
+        if (response instanceof WCScript.Response) {
             scene = response._scene != null ? "scenes/" + scenePath + response._scene + ".vcd" : null;
-
-            if (response._callback != null) {
-                callback = response._callback;
-            }
-
-            if (response._followups.len() > 0) {
-                responseThen = WCScript.ResponseThen(_getFollowups(response._followups));
-            }
+        } else {
+            scene = response != null ? "scenes/" + scenePath + response + ".vcd" : null;
         }
 
-        if (callback == null && cue._callback != null) {
-            callback = cue._callback;
+        if (response instanceof WCScript.Response && response._callback != null) {
+            callbackList.append(response._callback);
+        } else if (cue._callback != null) {
+            callbackList.append(cue._callback);
         }
 
-        // Check if the follow up is empty and the Cue has a defined follow up
-        if (responseThen == null && cue._followups.len() > 0) {
+        if (response instanceof WCScript.Response && response._followups.len() > 0) {
+            responseThen = WCScript.ResponseThen(_getFollowups(response._followups));
+        } else if (cue._followups.len() > 0) {
             responseThen = WCScript.ResponseThen(_getFollowups(cue._followups));
         }
 
-        local func = @(speaker, query) g_rr.rr_ApplyContext(speaker, query, applyContext, true, responseRule.PlayedResponse(index, callback));
-
-        local kind = ResponseKind.none
-        if (scene) {
-            kind = ResponseKind.scene
-        } else if (func) {	
-            kind = ResponseKind.script
-        }
-
-        return WCScript.ResponseSingle(kind, scene, responseRule, func, responseThen);
+        local kind = scene == null ? ResponseKind.script : ResponseKind.scene;
+        return WCScript.ResponseSingle(kind, scene, responseRule, applyContext, callbackList, responseThen);
     }
 }
