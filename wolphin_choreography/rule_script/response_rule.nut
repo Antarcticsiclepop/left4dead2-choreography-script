@@ -27,15 +27,16 @@ class ResponseRule {
 		responses = processedRules;
 	}
 
-	function PlayedResponse(index) {
+	function PlayedResponse(index, callback) {
 		return (function (speaker, query) {
 			played_responses[index] = true;
-			if (
-				params.matchOnce
-				|| params.promptResponsesOnce
-				&& played_responses.filter(@(index, value) !value).len() == 0
-			) {
+
+			if (params.matchOnce || params.promptResponsesOnce && played_responses.filter(@(index, value) !value).len() == 0) {
 				Disable(speaker, query);
+			}
+
+			if (callback != null) {
+				callback(speaker, query);
 			}
 		}).bindenv(this);
 	}
@@ -71,6 +72,6 @@ class ResponseRule {
 	}
 
 	function Disable(speaker, query) {
-		g_rr.rr_ApplyContext(speaker, query, { match = { context = "Match" + rulename, value = 1, duration = -1 } }, true, null);
+		speaker.SetContext("Match" + rulename, "1", -1);
 	}
 }

@@ -6,10 +6,10 @@ class ResponseRuleParams {
     matchOnce = false;
 
     constructor(
-        _repeatableResponses = false,
-        _promptResponsesSequentially = false,
-        _promptResponsesOnce = false,
-        _matchOnce = false
+        _repeatableResponses,
+        _promptResponsesSequentially,
+        _promptResponsesOnce,
+        _matchOnce
     ) {
         repeatableResponses = _repeatableResponses;
         promptResponsesSequentially = _promptResponsesSequentially;

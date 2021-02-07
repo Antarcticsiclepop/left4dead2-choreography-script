@@ -132,3 +132,27 @@ You can use the subtitle files of the game to find scenes you are looking for an
 "Coach_WorldC4M208"	"<clr:112,75,125>Coach: Dang. Bitches must like sugar." // "WorldC4M208" is the scene name
 "Virgil_C4End14"	"<clr:148,148,110>Virgil: Woo, look out now, that big fella, there!" // "Virgil_C4End14" is the scene name
 ```
+
+## **Trigger sounds with responses**
+
+I have provided two useful functions to use with the `:callback()` function:
+
+### **`::emitSound()`**
+
+```javascript
+.responses(
+    Response()
+        .callback(@(speaker, query) emitSound(speaker, query, "Boat.Horn"))
+)
+```
+
+### **`::playSoundFile()`**
+
+```javascript
+.responses(
+    Response()
+        .callback(@(speaker, query) playSoundFile(speaker, query, "music/bacteria/boomerbacteria.wav", 1.0))
+)
+```
+
+> Use the `/` character for file path.

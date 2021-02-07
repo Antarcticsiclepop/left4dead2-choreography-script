@@ -7,7 +7,7 @@ class ResponseSingle {
 	rule = null;
     cpp_visitor = null;
 
-	constructor(_kind, _target, _rule, _func, _params = {})
+	constructor(_kind, _target, _rule, _func, _params)
 	{
 		kind = _kind;
 		target = _target;

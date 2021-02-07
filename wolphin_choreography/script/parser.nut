@@ -125,7 +125,7 @@ class ParserBase extends Validateable {
             criterias.append(["concept", ruleConcept])
         }
 
-        local ruleMatch = "worldMatch" + ruleName;
+        local ruleMatch = "Match" + ruleName;
         criterias.append([@(query) !(ruleMatch in query) || query[ruleMatch] != 1])
         
         if (!WCScript.isSurvivor(cue._actor)) {
@@ -150,13 +150,13 @@ class ParserBase extends Validateable {
         );
 
         // Iterate the list of Responses.
-        foreach (index, value in cue._responses) {
+        foreach (index, response in cue._responses) {
             local applyContext = {};
             if (onlyTriggerOnce || recordConcept) {
                 applyContext.said <- { context = "Said" + ruleConcept, value = 1, duration = -1 };
             }
 
-            responseRule.responses.append(_createSingleResponse(index, value, cue, applyContext, responseRule));
+            responseRule.responses.append(_createSingleResponse(index, response, cue, applyContext, responseRule));
         }
 
         // print("Created rule with name " + rule.name + ", concept " + ruleConcept + "\n");
@@ -166,7 +166,7 @@ class ParserBase extends Validateable {
         }
     }
 
-    function _createSingleResponse(index, value, cue, applyContext, responseRule) {
+    function _createSingleResponse(index, response, cue, applyContext, responseRule) {
         local callback = null;
         local applycontext = {};
         local scene = null;
@@ -174,17 +174,17 @@ class ParserBase extends Validateable {
         local scenePath = WCScript.isSurvivor(cue._actor) ? cue._actor + "/" : "npcs/";
 
         // Check if the Response is just a string.
-        if (type (value) == "string" || value == null) {
-            scene = value != null ? "scenes/" + scenePath + value + ".vcd" : null;
-        } else if (value instanceof WCScript.Response) {
-            scene = value._scene != null ? "scenes/" + scenePath + value._scene + ".vcd" : null;
+        if (type (response) == "string" || response == null) {
+            scene = response != null ? "scenes/" + scenePath + response + ".vcd" : null;
+        } else if (response instanceof WCScript.Response) {
+            scene = response._scene != null ? "scenes/" + scenePath + response._scene + ".vcd" : null;
 
-            if (value._callback != null) {
-                callback = value._callback;
+            if (response._callback != null) {
+                callback = response._callback;
             }
 
-            if (value._followups.len() > 0) {
-                responseThen = WCScript.ResponseThen(_getFollowups(value._followups));
+            if (response._followups.len() > 0) {
+                responseThen = WCScript.ResponseThen(_getFollowups(response._followups));
             }
         }
 
@@ -197,33 +197,7 @@ class ParserBase extends Validateable {
             responseThen = WCScript.ResponseThen(_getFollowups(cue._followups));
         }
 
-        local func = responseRule.PlayedResponse(index);
-        if (callback != null) {
-            local Func = func;
-            func = function (speaker, query) {
-                Func(speaker, query);
-                callback(speaker, query);
-            }
-        }
-
-        local callbackFunc = func;
-        func = @(speaker, query) g_rr.rr_ApplyContext(speaker, query, applyContext, true, callbackFunc);
-
-        // if ( "soundname" in value)
-        // {
-        //     local Func = func
-        //     func = @( speaker, query ) g_rr.rr_EmitSound(speaker, query, soundname, applyContext, true, Func);
-        // }
-
-        // if ( "soundfile" in value )
-        // {
-        //     local volume = 1
-        //     if ( "volume" in value )
-        //         volume = volume
-            
-        //     local Func = func
-        //     func = @( speaker, query ) g_rr.rr_PlaySoundFile(speaker, query, soundfile, applyContext, true, volume, Func);
-        // }
+        local func = @(speaker, query) g_rr.rr_ApplyContext(speaker, query, applyContext, true, responseRule.PlayedResponse(index, callback));
 
         local kind = ResponseKind.none
         if (scene) {

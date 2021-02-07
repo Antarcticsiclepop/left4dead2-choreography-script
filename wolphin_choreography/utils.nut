@@ -25,3 +25,12 @@ function printTable(table) {
 function getSuffix(number) {
     return number < 0 ? "" : getSuffix((number / 26) - 1) + (65 + number % 26).tochar();
 }
+
+function playSoundFile(speaker, query, soundfile, volume = 1.0) {
+	if (!IsSoundPrecached( soundfile)) PrecacheSound(soundfile);
+	EmitAmbientSoundOn(soundfile, volume, 350, 100, speaker);
+}
+
+function emitSound(speaker, query, soundname) {
+	EmitSoundOn(soundname, speaker);
+}
