@@ -1,7 +1,8 @@
 
 class Followup extends Validateable {
 
-    _className = "Followup";
+    static _className = "Followup";
+
     _concept = null;
     _target = null;
     _delay = 0.0;

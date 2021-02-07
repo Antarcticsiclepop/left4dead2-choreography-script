@@ -1,6 +1,7 @@
 class Cue extends CriteriaBase {
 
-    _className = "Cue";
+    static _className = "Cue";
+
     _actor = null;
     _responses = null;
     _followups = null;
@@ -9,6 +10,7 @@ class Cue extends CriteriaBase {
     _repeatableResponses = false;
     _promptResponsesSequentially = false;
     _promptResponsesOnce = false;
+    _matchOnce = false;
 
     constructor() {
         base.constructor();
@@ -35,7 +37,7 @@ class Cue extends CriteriaBase {
             _responses = vargv;
         }
 
-        _validateArrayType(_responses, "string", "Response");
+        _validateArrayType(_responses, "string", WCScript.Response);
 
         return this;
     }
@@ -51,7 +53,7 @@ class Cue extends CriteriaBase {
 
     function followups(...) {
         _functionName = "followups";
-        _validateArrayType(vargv, "string", "Followup");
+        _validateArrayType(vargv, "string", WCScript.Followup);
 
         _followups = vargv;
         return this;
@@ -70,7 +72,6 @@ class Cue extends CriteriaBase {
         _validateNoParameters(vargv);
 
         _promptResponsesSequentially = true;
-        _repeatableResponses = true;
         return this;
     }
 
@@ -79,6 +80,14 @@ class Cue extends CriteriaBase {
         _validateNoParameters(vargv);
 
         _promptResponsesOnce = true;
+        return this;
+    }
+
+    function matchOnce(...) {
+        _functionName = "promptResponsesOnce";
+        _validateNoParameters(vargv);
+
+        _matchOnce = true;
         return this;
     }
 }
@@ -102,7 +111,7 @@ class Sequence extends CriteriaBase {
             _cues = vargv;
         }
 
-        _validateArrayType(_cues, "Cue", "Delay");
+        _validateArrayType(_cues, WCScript.Cue, WCScript.Delay);
 
         return this;
     }

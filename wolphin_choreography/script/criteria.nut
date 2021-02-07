@@ -28,7 +28,7 @@ class CriteriaBase extends Validateable {
             }
         }
 
-        _criterias = criterias;
+        _criterias;
         return this;
     }
 

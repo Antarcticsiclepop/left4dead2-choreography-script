@@ -57,7 +57,9 @@ Using this function will allow you to provide a callback function that will exec
         .responses(
             Response()
                 .scene("Worldc4m117") // This is the best goddamn burger tank I’ve ever visited.
-                .callback(@() printl("Hello world!"))
+                .callback(@(speaker, query) printl("Hello world!"))
         )
 );
 ```
+
+> You must include the parameters **speaker** and **query** to your function.

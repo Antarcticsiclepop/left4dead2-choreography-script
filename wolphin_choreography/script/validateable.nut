@@ -30,7 +30,7 @@ class Validateable {
 
     function _validateType(object, ...) {
         foreach (objectType in vargv) {
-            if (type (object) == objectType || "_className" in object && object._className == objectType) {
+            if (type (object) == objectType || type(objectType) == "class" && object instanceof objectType) {
                 return;
             }
         }

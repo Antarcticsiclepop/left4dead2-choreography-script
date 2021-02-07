@@ -430,15 +430,13 @@ Concept()
 Concept()
     .name("OutOfGas")
     .remarkable(712)
-    .criterias(
-        criteriaNotSaid("ThroughHere")
-    )
     .publishCues(
         Cue()
             .actor("gambler")
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
+                criteriaNotSaid("ThroughHere")
             )
             .responses(
                 // No gas, terrific, this is just great.
@@ -452,6 +450,7 @@ Concept()
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
+                criteriaNotSaid("ThroughHere")
             )
             .responses(
                 Response()
@@ -469,6 +468,7 @@ Concept()
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
+                criteriaNotSaid("ThroughHere")
             )
             .responses(
                 Response()
@@ -493,6 +493,7 @@ Concept()
             .criterias(
                 criteriaNotInDanger()
                 criteriaAliveAndNear("any")
+                criteriaNotSaid("ThroughHere")
             )
             .cues(
                 Cue()
@@ -1245,7 +1246,7 @@ Concept()
 
 Concept()
     .name("SugarMillSeen")
-    // .remarkable(370)
+    .remarkable(370)
     .publishCues(
         Cue()
             .actor("mechanic")
@@ -1278,7 +1279,6 @@ Concept()
                 "Worldc4m131" // Let’s head towards the smoke stack.
                 "Worldc4m139" // That better be that god damn sugar mill.
             )
-            .callback(@() printl("Hello world!"))
         Cue()
             .actor("producer")
             .criterias(

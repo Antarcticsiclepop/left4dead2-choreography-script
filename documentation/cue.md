@@ -58,12 +58,12 @@ Using this function will allow you to provide a callback function that will exec
 .publishCues(
     Cue()
         .actor("gambler")
-        .callback(@() printl("Hello world!"))
+        .callback(@(speaker, query) printl("Hello world!"))
         ...
 );
 ```
 
-> You can have more than one `Followup::` object, only one will trigger.
+> You must include the parameters **speaker** and **query** to your function.
 
 ## **`::repeatableResponses()`**
 
@@ -95,13 +95,26 @@ Using this function will make the **cue** prompt the **responses** in sequential
 
 ## **`::promptResponsesOnce()`**
 
-Using this function will make the **cue** prompt each **response** only once (it will not be able to prompt that **response** again). Example:
+Using this function will make the **cue** prompt each **response** only once (it will not be able to prompt that **response** again). The **cue** will be disabled once all **responses** have prompted. Example:
 
 ```javascript
 .publishCues(
     Cue()
         .actor("gambler")
         .promptResponsesOnce()
+        ...
+);
+```
+
+## **`::matchOnce()`**
+
+Using this function will disable the **cue** after prompting one **response**. Example:
+
+```javascript
+.publishCues(
+    Cue()
+        .actor("gambler")
+        .matchOnce()
         ...
 );
 ```

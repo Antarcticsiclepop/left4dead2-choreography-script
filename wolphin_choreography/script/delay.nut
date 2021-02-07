@@ -1,6 +1,7 @@
 class Delay extends Validateable {
     
-    _className = "Delay";
+    static _className = "Delay";
+
     _delay = null;
 
     constructor(...) {

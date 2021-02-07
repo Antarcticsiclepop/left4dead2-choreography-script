@@ -1,9 +1,5 @@
-/** Fixes reference issues. */
-local isValidSurvivor = isSurvivor;
-local printQuery = printTable;
-
 function criteriaNotSaid(concept) {
-    local recordFlag = "worldSaid" + concept;
+    local recordFlag = "said" + concept;
     return [@(query) !(recordFlag in query) || recordFlag in query && query[recordFlag] != 1];
 }
 
@@ -19,7 +15,7 @@ function criteriaAliveAndNear(survivorPredicate, ...) {
                     vargv.len() <= 1 ? 0 : vargv[0],
                     vargv.len() == 0 ? 2056 : vargv.len() == 1 ? vargv[0] : vargv[1]
                 ];
-            } else if (!isValidSurvivor(survivor)) {
+            } else if (!isSurvivor(survivor)) {
                 error("Invalid survivor id: " + survivor + "\n");
             } else {
                 predicate["is" + survivor.tolower() + "alive"] <- [1, 1];

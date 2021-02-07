@@ -109,7 +109,7 @@ script_execute example_choreo
 
 ## **How to trigger a concept from console**
 
-For **concepts** targeting survivors (you will not be able to prompt cues for the survivor you are in control):
+For **concepts** targeting survivors (you will not be able to prompt **cues** for the survivor you are in control):
 ```
 ent_fire info_director FireConceptToAny <concept_name>
 ```

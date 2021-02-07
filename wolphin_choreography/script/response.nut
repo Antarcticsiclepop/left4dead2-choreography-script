@@ -1,6 +1,7 @@
 class Response extends Validateable {
 
-    _className = "Response";
+    static _className = "Response";
+
     _scene = null;
     _followups = null;
     _callback = null;
@@ -22,7 +23,7 @@ class Response extends Validateable {
 
     function followups(...) {
         _functionName = "followups";
-        _validateArrayType(vargv, "string", "Followup");
+        _validateArrayType(vargv, "string", WCScript.Followup);
 
         _followups = vargv;
         return this;

@@ -1,6 +1,7 @@
 class Concept extends ParserBase {
 
-    _className = "Concept";
+    static _className = "Concept";
+
     _name = null;
     _triggerOnce = false;
     _cues = null;

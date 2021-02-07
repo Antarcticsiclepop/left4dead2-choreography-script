@@ -61,16 +61,3 @@ Concept()
     .record()
     ...
 ```
-
-## **`::criterias()`**
-
-Using this function will append additional criterias to the **cues** belonging to the **concept** (won't be added to the remainder **cues** of a `Sequence::` object), this is useful to reduce repetition. Example:
-
-```javascript
-Concept()
-    .name("InBurgerTank")
-    .criterias(
-        criteriaNotSaid("SomeOtherConcept")
-    )
-    ...
-```
