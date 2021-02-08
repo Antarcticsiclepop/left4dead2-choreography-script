@@ -1,25 +1,17 @@
 # Writing a `Followup::` object
 
 ```javascript
-Cue()
-    .actor("gambler")
-    .followup(
-        Followup()
-            .concept("SomeNextConcept")
-    )
-    .responses("Worldc4m117")
+Response()
+    .scene("Worldc4m117")
+    .followups("SomeNextConcept")
 
 - or -
 
-Cue()
-    .actor("gambler")
-    .responses(
-        Response()
-            .scene("Worldc4m117")
-            .followup(
-                Followup()
-                    .concept("SomeNextConcept")
-            )
+Response()
+    .scene("Worldc4m117")
+    .followups(
+        Followup()
+            .concept("SomeNextConcept")
     )
 ```
 
@@ -32,7 +24,7 @@ Using this function will make it a **criteria** whom the **actor** must be for t
 ```javascript
 Cue()
     .actor("gambler")
-    .followup(
+    .followups(
         Followup()
             .concept("SomeNextConcept")
             .target("self")
@@ -66,7 +58,7 @@ Using this function will add a delay before the next **concept** is triggered. E
 ```javascript
 Cue()
     .actor("gambler")
-    .followup(
+    .followups(
         Followup()
             .concept("SomeNextConcept")
             .delay(2.0)

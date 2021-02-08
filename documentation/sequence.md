@@ -31,7 +31,7 @@ A `Sequence::` object can be used as a quick way to trigger multiple **cues** in
 );
 ```
 
-You may add a **followup** to any `Cue::` object of the **sequence** for branching out to other **concepts**.
+You may add **followups** to any `Cue::` object of the **sequence** for branching out to other **concepts** rather than continuing down the sequence.
 
 ## **`::criterias()`**
 
