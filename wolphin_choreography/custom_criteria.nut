@@ -1,6 +1,14 @@
 function criteriaNotSaid(concept) {
-    local recordFlag = "said" + concept;
-    return [@(query) !(recordFlag in query) || recordFlag in query && query[recordFlag] != 1];
+    return criteriaWorldNotValue("Said" + concept, 1);
+}
+
+function criteriaWorldNotValue(context, value) {
+    local worldContext = "world" + context;
+    return [@(query) !(worldContext in query) || query[worldContext] != value];
+}
+
+function criteriaNotValue(context, value) {
+    return [@(query) !(context in query) || query[context] != value];
 }
 
 function criteriaAliveAndNear(survivorPredicate, ...) {

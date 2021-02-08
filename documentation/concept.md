@@ -53,7 +53,7 @@ Concept()
 
 ## **`::record()`**
 
-Using this function will store the `Concept::` object's name in the world table which can then be used as a **criteria**. This is the method in how a **cue** is only allowed to be triggered once, if the **concept** exists in the world table, the evaluation will fail. Example:
+Using this function will store the `Concept::` object's name in the **context table** which can then be used as a **criteria**. This is the method in how a **cue** is only allowed to be triggered once, if the **concept** exists in the **context table**, the evaluation will fail. Example:
 
 ```javascript
 Concept()

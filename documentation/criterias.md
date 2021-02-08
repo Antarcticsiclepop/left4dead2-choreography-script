@@ -1,6 +1,6 @@
 # Writing **criterias**
 
-You can write **criterias** that are compared with a single value or a range of values:
+Criterias are compared with a **context table**, you can write **criterias** that are compared with a single value or a range of values:
 
 ```javascript
 Cue()
@@ -15,14 +15,28 @@ Cue()
 
 ## **`criteriaNotSaid()`**
 
-Halts a **concept** from triggering if some other **concept** has already prompted.
+Halts the **cue** from triggering if some other **concept** has already prompted a **cue** by looking in the **world's context table**, use the `Concept::record()` function to store the **concept** when prompted.
 
 ```javascript
 .criterias(
     /**
     * @param OTHER_CONCEPT String that represents the name of a Concept
     */
-    criteriasNotSaid(OTHER_CONCEPT)
+    criteriaNotSaid(OTHER_CONCEPT)
+)
+```
+
+## **`criteriaWorldNotValue()`**
+
+Halts the **cue** from triggering if a created **context** equals a value.
+
+```javascript
+.criterias(
+    /**
+    * @param {string} CONTEXT The context name
+    * @param {number | string} VALUE The context value
+    */
+    criteriaWorldNotValue(CONTEXT, VALUE)
 )
 ```
 
@@ -69,7 +83,7 @@ Useful for restricting cues that require certain survivors to be alive and near 
 
 TO-DO
 
-# List of known criterias
+# Example of the **context table**
 
 ```
 numberinsafespot                = 4

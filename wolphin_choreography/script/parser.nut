@@ -118,15 +118,14 @@ class ParserBase extends Validateable {
             
             // Check if Cue should only be triggered once.
             if (onlyTriggerOnce) {
-                local conceptSaid = "worldSaid" + ruleConcept;
-                criterias.append([@(query) !(conceptSaid in query) || query[conceptSaid] != 1]);
+                criterias.append(WCScript.criteriaNotSaid(ruleConcept));
             }
         } else {
             criterias.append(["concept", ruleConcept])
         }
 
         local ruleMatch = "Match" + ruleName;
-        criterias.append([@(query) !(ruleMatch in query) || query[ruleMatch] != 1])
+        criterias.append(WCScript.criteriaNotValue(ruleMatch, 1))
         
         if (!WCScript.isSurvivor(cue._actor)) {
             criterias.append(["name", cue._actor]);
@@ -146,12 +145,12 @@ class ParserBase extends Validateable {
 
         // Iterate the list of Responses.
         foreach (index, response in cue._responses) {
-            local applyContext = {};
+            local callbackList = [];
             if (onlyTriggerOnce || recordConcept) {
-                applyContext.said <- { context = "Said" + ruleConcept, value = 1, duration = -1 };
+                callbackList.append(@(speaker, query) WCScript.setWorldContext("Said" + ruleConcept));
             }
 
-            responseRule.responses.append(_createSingleResponse(index, response, cue, applyContext, responseRule));
+            responseRule.responses.append(_createSingleResponse(index, response, cue, callbackList, responseRule));
         }
 
         // print("Created rule with name " + rule.name + ", concept " + ruleConcept + "\n");
@@ -161,11 +160,12 @@ class ParserBase extends Validateable {
         }
     }
 
-    function _createSingleResponse(index, response, cue, applyContext, responseRule) {
-        local callbackList = [responseRule.PlayedResponse(index)];
+    function _createSingleResponse(index, response, cue, callbackList, responseRule) {
         local scene = null;
         local responseThen = null;
         local scenePath = WCScript.isSurvivor(cue._actor) ? cue._actor + "/" : "npcs/";
+
+        callbackList.append(responseRule.PlayedResponse(index));
 
         if (response instanceof WCScript.Response) {
             scene = response._scene != null ? "scenes/" + scenePath + response._scene + ".vcd" : null;
@@ -186,6 +186,6 @@ class ParserBase extends Validateable {
         }
 
         local kind = scene == null ? ResponseKind.script : ResponseKind.scene;
-        return WCScript.ResponseSingle(kind, scene, responseRule, applyContext, callbackList, responseThen);
+        return WCScript.ResponseSingle(kind, scene, responseRule, callbackList, responseThen);
     }
 }

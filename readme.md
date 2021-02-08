@@ -133,7 +133,7 @@ You can use the subtitle files of the game to find scenes you are looking for an
 "Virgil_C4End14"	"<clr:148,148,110>Virgil: Woo, look out now, that big fella, there!" // "Virgil_C4End14" is the scene name
 ```
 
-## **Trigger sounds with responses**
+## **Trigger sounds with `::callback()`**
 
 I have provided two useful functions to use with the `::callback()` function:
 
@@ -146,6 +146,15 @@ I have provided two useful functions to use with the `::callback()` function:
 )
 ```
 
+```javascript
+/**
+* @param {instance} SPEAKER The actor of the **response**
+* @param {table} QUERY The **context table**
+* @param {string} SOUND_NAME The name of the sound
+*/
+emitSound(SPEAKER, QUERY, SOUND_NAME)
+```
+
 ### **`::playSoundFile()`**
 
 ```javascript
@@ -156,6 +165,16 @@ I have provided two useful functions to use with the `::callback()` function:
 ```
 
 > Use the `/` character for file path.
+
+```javascript
+/**
+* @param {instance} SPEAKER The actor of the **response**
+* @param {table} QUERY The **context table**
+* @param {string} SOUND_FILE The sound file to play
+* @param {number} [VOLUME = 1] Volume to play the audio file (0.0 - 1.0)
+*/
+playSoundFile(SPEAKER, QUERY, SOUND_FILE, VOLUME)
+```
 
 ## **Replacing existing cues**
 
@@ -172,4 +191,53 @@ Concept()
                 "Grenade04" // Fire coming!
             )
     )
+```
+
+## **Apply context to world**
+
+You can create your own **context** in the **world's context table** to use as **criterias**, I have provided some functions to simplify usage:
+
+### **`::setWorldContext()`**
+
+Use this function to create a **context** in the **world's context table**.
+
+```javascript
+.responses(
+    Response()
+        .callback(@(speaker, query) setWorldContext("MyContext"))
+)
+```
+
+> Your **context** name will be prefixed with the word *"world"* when saving to the **world's context table**, *"MyContext"* will appear as *"worldMyContext"*.
+
+```javascript
+/**
+* @param {string} CONTEXT The context name
+* @param {number | string} [VALUE = 1] The context value
+* @param {number} [DURATION = -1] Duration in seconds for the context to exist, -1 to exist forever
+*/
+setWorldContext(CONTEXT, VALUE, DURATION)
+```
+
+### **`::addToWorldContext()`**
+
+Use this function to keep increasing the value of your **context**, it will create the **context** if it doesn't exist with the additive value.
+
+```javascript
+.responses(
+    Response()
+        .callback(@(speaker, query) addToWorldContext(query, "MyContext"))
+)
+```
+
+> Use the `/` character for file path.
+
+```javascript
+/**
+* @param {table} QUERY The **context table**
+* @param {string} CONTEXT The context name
+* @param {number | string} [VALUE = 1] The additive value
+* @param {number} [DURATION = -1] Duration in seconds for the context to exist, -1 to exist forever
+*/
+addToWorldContext(CONTEXT, VALUE, DURATION)
 ```

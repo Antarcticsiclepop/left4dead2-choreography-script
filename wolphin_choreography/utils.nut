@@ -44,3 +44,16 @@ function getExpresserTarget(value) {
         return value.slice(0,1).toupper() + value.slice(1);
     }
 }
+
+function getWorldContextValue(query, context) {
+    local worldContext = "world" + context;
+    return worldContext in query ? query[worldContext] : 0;
+}
+
+function setWorldContext(context, value = 1, duration = -1) {
+    Entities.FindByClassname(null, "worldspawn").SetContext(context, value.tostring(), duration);
+}
+
+function addToWorldContext(query, context, value = 1, duration = -1) {
+    setWorldContext(context, getWorldContextValue(query, context) + value, duration);
+}
