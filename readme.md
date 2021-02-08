@@ -45,9 +45,9 @@ Via this input                  RunScriptFile
 With a parameter override of    example_choreo
 ```
 
-# How to trigger a **concept**
+# How to trigger a **cue**
 
-There are many ways to trigger a **concept**, but a *remarkable* **concept** can only be triggered by *remarkable entities*:
+There are many ways to trigger a **cue**, but a *remarkable* **cue** can only be triggered by *remarkable entities*:
 
 ## **By *func_orator* entity**
 
@@ -156,3 +156,20 @@ I have provided two useful functions to use with the `::callback()` function:
 ```
 
 > Use the `/` character for file path.
+
+## **Replacing existing cues**
+
+You can override existing **cues** with your own dialogues, this includes the radial menu, example:
+
+```
+// Replace the `Argh!` response in the radial menu for **Nick**
+Concept()
+    .name("PlayerNegative")
+    .publishCues(
+        Cue()
+            .actor("gambler")
+            .responses(
+                "Grenade04" // Fire coming!
+            )
+    )
+```

@@ -37,7 +37,7 @@ class Cue extends CriteriaBase {
             _responses = vargv;
         }
 
-        _validateArrayType(_responses, "string", WCScript.Response);
+        _validateArrayType(_responses, "string", WCScript.Response, "null");
 
         return this;
     }

@@ -11,16 +11,6 @@ class ResponseThen {
 		}
 	}
 
-	function GetExpresserTarget(value) {
-		if (value.tolower() == "namvet")
-			return "NamVet";
-		else if (value.tolower() == "teengirl")
-			return "TeenGirl";
-		else {
-			return value.slice(0,1).toupper() + value.slice(1);
-		}
-	}
-
 	function GetOratorList() {
 		local oratorlist = [];
 		local entity = null;
@@ -36,8 +26,6 @@ class ResponseThen {
 
 		local then = WCScript.getRandomItem(thenlist);
 		local target = WCScript.getRandomItem(then.target);
-		
-		printl(printTable(query));
 
 		switch (target.tolower()) {
 			case "all":
@@ -69,7 +57,7 @@ class ResponseThen {
 				break;
 			default:
 				local expresserlist = ::rr_GetResponseTargets();
-				local expressertarget = GetExpresserTarget(target);
+				local expressertarget = WCScript.getExpresserTarget(target);
 				local oratorlist = GetOratorList();
 
 				local oratorIndex = null;

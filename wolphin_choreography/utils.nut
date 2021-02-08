@@ -34,3 +34,13 @@ function playSoundFile(speaker, query, soundfile, volume = 1.0) {
 function emitSound(speaker, query, soundname) {
 	EmitSoundOn(soundname, speaker);
 }
+
+function getExpresserTarget(value) {
+    if (value.tolower() == "namvet")
+        return "NamVet";
+    else if (value.tolower() == "teengirl")
+        return "TeenGirl";
+    else {
+        return value.slice(0,1).toupper() + value.slice(1);
+    }
+}

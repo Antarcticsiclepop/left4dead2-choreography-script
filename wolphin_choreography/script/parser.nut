@@ -131,7 +131,7 @@ class ParserBase extends Validateable {
         if (!WCScript.isSurvivor(cue._actor)) {
             criterias.append(["name", cue._actor]);
         } else {
-            criterias.append(["who", cue._actor]);
+            criterias.append(["who", WCScript.getExpresserTarget(cue._actor)]);
             criterias.append(["is" + cue._actor + "alive", 1])
         }
 

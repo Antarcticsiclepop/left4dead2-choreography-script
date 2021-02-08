@@ -55,8 +55,8 @@ Followup()
 * `all` - Target all speakers (survivor and func_orator).
 * `self` - Target the same speaker from the response (survivor or func_orator).
 * `any` - Target any survivor. Default option.
-* `subject`
-* `from`
+* `subject` - Target the survivor being looked at.
+* `from` - Same as `self`.
 * `func_orator` - Target the first func_orator found.
 
 ## **`::delay()`**
