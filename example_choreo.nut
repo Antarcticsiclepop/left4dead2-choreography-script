@@ -1,7 +1,7 @@
 IncludeScript("wolphin_choreography");
 
 Concept()
-    .name("VirgilGetGas")
+    .value("VirgilGetGas")
     .publishCues(
         Cue()
             .actor("orator")
@@ -24,17 +24,17 @@ Concept()
                     .concept("VirgilGetGasResponse")
                 Followup()
                     .concept("VirgilWaitGasResponse")
-                    .target("orator")
-                    .delay(0.5)
+                    .target("self")
+                    .delay(0.75)
                 Followup()
                     .concept("VirgilSignalResponse")
-                    .target("orator")
-                    .delay(0.5)
+                    .target("self")
+                    .delay(0.75)
             )
     );
 
 Concept()
-    .name("VirgilGetGasResponse")
+    .value("VirgilGetGasResponse")
     .publishCues(
         Sequence()
             .criterias(
@@ -103,7 +103,7 @@ Concept()
     );
 
 Concept()
-    .name("VirgilGetGasEnd")
+    .value("VirgilGetGasEnd")
     .publishCues(
         Cue()
             .actor("gambler")
@@ -125,7 +125,7 @@ Concept()
     );
 
 Concept()
-    .name("VirgilSignalResponse")
+    .value("VirgilSignalResponse")
     .publishCues(
         Cue()
             .actor("orator")
@@ -185,7 +185,7 @@ Concept()
     );
 
 Concept()
-    .name("VirgilSignalRespondQuestion")
+    .value("VirgilSignalRespondQuestion")
     .publishCues(
         Sequence()
             .criterias(
@@ -215,7 +215,7 @@ Concept()
     );
 
 Concept()
-    .name("VirgilSignalQuestion")
+    .value("VirgilSignalQuestion")
     .publishCues(
         Sequence()
             .criterias(
@@ -248,7 +248,7 @@ Concept()
     );
    
 Concept()
-    .name("VirgilWaitGasResponse")
+    .value("VirgilWaitGasResponse")
     .publishCues(
         Cue()
             .actor("orator")
@@ -328,8 +328,24 @@ Concept()
     );
 
 Concept()
-    .name("GamblerPredictionResponse")
+    .value("GamblerPredictionResponse")
     .publishCues(
+        Cue()
+            .actor("orator")
+            .responses(
+                // I don’t get off the boat, y’all gonna have to get the gasoline and get back here.
+                "virgil_C4start14"
+                //  I don’t get off the boat, y’all gonna have to get the gas and get back here.
+                "virgil_C4start15"
+                //  I don’t get off the boat now, ya’ll gonna have to get the gasoline and get back here.
+                "virgil_C4start16"
+                // Y’all gonna have to get the gas, and come back here, I don’t get off the boat.
+                "virgil_C4start17"
+                // Ya’ll gonna get the gas and come back here, Virgil don’t get off the boat.
+                "virgil_C4start18"
+                // Virgil don’t get off the boat, ya’ll gonna have to get the gas and come back here.
+                "virgil_C4start19"
+            )
         Cue()
             .actor("producer")
             .criterias(
@@ -364,7 +380,7 @@ Concept()
     );
 
 Concept()
-    .name("GamblerPredictionContinue")
+    .value("GamblerPredictionContinue")
     .publishCues(
         Cue()
             .actor("gambler")
@@ -381,7 +397,7 @@ Concept()
     );
 
 Concept()
-    .name("InBurgerTank")
+    .value("InBurgerTank")
     .remarkable(256)
     .publishCues(
         Sequence()
@@ -428,7 +444,7 @@ Concept()
     );
 
 Concept()
-    .name("OutOfGas")
+    .value("OutOfGas")
     .remarkable(712)
     .publishCues(
         Cue()
@@ -507,7 +523,7 @@ Concept()
     );
 
 Concept()
-    .name("OutOfGasGamblerReact")
+    .value("OutOfGasGamblerReact")
     .publishCues(
         Cue()
             .criterias(
@@ -523,7 +539,7 @@ Concept()
     );
 
 Concept()
-    .name("OutOfGasMarathon")
+    .value("OutOfGasMarathon")
     .publishCues(
         Cue()
             .actor("gambler")
@@ -539,7 +555,7 @@ Concept()
     );
 
 Concept()
-    .name("OutOfGasComplain")
+    .value("OutOfGasComplain")
     .publishCues(
         Cue()
             .actor("coach")
@@ -560,7 +576,7 @@ Concept()
     );
 
 Concept()
-    .name("GasPath")
+    .value("GasPath")
     .publishCues(
         Cue()
             .actor("coach")
@@ -587,7 +603,7 @@ Concept()
     );
 
 Concept()
-    .name("DucatelDieselResponse")
+    .value("DucatelDieselResponse")
     .publishCues(
         Sequence()
             .criterias(
@@ -624,7 +640,7 @@ Concept()
     );
     
 Concept()
-    .name("SugarMillResponse")
+    .value("SugarMillResponse")
     .publishCues(
         Sequence()
             .criterias(
@@ -662,7 +678,7 @@ Concept()
     );
 
 Concept()
-    .name("SugarMillResponseEnd")
+    .value("SugarMillResponseEnd")
     .publishCues(
         Cue()
             .actor("gambler")
@@ -686,7 +702,7 @@ Concept()
     );
 
 Concept()
-    .name("ThroughHere")
+    .value("ThroughHere")
     .record()
     .remarkable(412)
     .publishCues(
@@ -733,7 +749,7 @@ Concept()
     );
 
 Concept()
-    .name("OverFence")
+    .value("OverFence")
     .remarkable(228)
     .publishCues(
         Cue()
@@ -779,7 +795,7 @@ Concept()
     );
 
 Concept()
-    .name("UpLadder")
+    .value("UpLadder")
     .remarkable(228)
     .publishCues(
         Cue()
@@ -826,7 +842,7 @@ Concept()
     );
 
 Concept()
-    .name("LandmarksComment")
+    .value("LandmarksComment")
     .publishCues(
         Cue()
             .actor("mechanic")
@@ -866,7 +882,7 @@ Concept()
     );
 
 Concept()
-    .name("ToPlayground")
+    .value("ToPlayground")
     .remarkable(820)
     .publishCues(
         Cue()
@@ -912,7 +928,7 @@ Concept()
     );
 
 Concept()
-    .name("ThroughDoor")
+    .value("ThroughDoor")
     .remarkable(228)
     .publishCues(
         Cue()
@@ -958,7 +974,7 @@ Concept()
     );
 
 Concept()
-    .name("DownStreet")
+    .value("DownStreet")
     .remarkable(492)
     .publishCues(
         Cue()
@@ -1004,7 +1020,7 @@ Concept()
     );
     
 Concept()
-    .name("ThroughGarageSale")
+    .value("ThroughGarageSale")
     .remarkable(712)
     .publishCues(
         Cue()
@@ -1046,7 +1062,7 @@ Concept()
     );
 
 Concept()
-    .name("ThroughGate")
+    .value("ThroughGate")
     .remarkable(286)
     .publishCues(
         Cue()
@@ -1092,7 +1108,7 @@ Concept()
     );
 
 Concept()
-    .name("CheckRooms")
+    .value("CheckRooms")
     .remarkable(224)
     .publishCues(
         Cue()
@@ -1138,7 +1154,7 @@ Concept()
     );
 
 Concept()
-    .name("ThroughWindow")
+    .value("ThroughWindow")
     .remarkable(224)
     .publishCues(
         Cue()
@@ -1184,7 +1200,7 @@ Concept()
     );
 
 Concept()
-    .name("DownHere")
+    .value("DownHere")
     .remarkable(224)
     .publishCues(
         Cue()
@@ -1230,22 +1246,7 @@ Concept()
     );
 
 Concept()
-    .name("PlayerNegative")
-    .publishCues(
-        Cue()
-            .actor("gambler")
-            .criterias(
-                criteriaNotInDanger()
-                criteriaAliveAndNear("any")
-            )
-            .responses(
-                "Grenade04"
-            )
-            .callback(@() DropFire(Entities.FindByModel(null,"models/survivors/survivor_gambler.mdl").GetOrigin()))
-    )
-
-Concept()
-    .name("SugarMillSeen")
+    .value("SugarMillSeen")
     .remarkable(370)
     .publishCues(
         Cue()
@@ -1255,8 +1256,10 @@ Concept()
                 criteriaAliveAndNear("any")
             )
             .responses(
-                "WorldC4M1B27" // There's the sugar mill.
-            )
+                Response()
+                    .scene("WorldC4M1B27") // There's the sugar mill.
+                    .callback(@(speaker, query) playSoundFile(speaker, query, "music/bacteria/boomerbacteria.wav", 1.0))
+            ).callback(@(speaker, query) printTable(query))
         Cue()
             .actor("coach")
             .criterias(
@@ -1266,7 +1269,7 @@ Concept()
             .responses(
                 "Worldc4m116" // There’s the mill.
                 "WorldC4M1B28" // There's the sugar mill.
-            )
+            ).callback(@(speaker, query) printTable(query))
         Cue()
             .actor("gambler")
             .criterias(
@@ -1278,7 +1281,7 @@ Concept()
                 "Worldc4m130" // I’m guessing that the smoke stack is the sugar mill.
                 "Worldc4m131" // Let’s head towards the smoke stack.
                 "Worldc4m139" // That better be that god damn sugar mill.
-            )
+            ).callback(@(speaker, query) printTable(query))
         Cue()
             .actor("producer")
             .criterias(
@@ -1288,11 +1291,11 @@ Concept()
             .responses(
                 "Worldc4m1b16" // There’s the sugar mill.
                 "Worldc4m117" // We can get to the sugar mill through here.
-            )
+            ).callback(@(speaker, query) printTable(query))
     );
 
 Concept()
-    .name("WreckComment")
+    .value("WreckComment")
     .remarkable(224)
     .publishCues(
         Cue()
@@ -1304,6 +1307,7 @@ Concept()
             .responses(
                 "Worldc4m1b20" // Dam, that was quite a wreck.
             )
+            .callback(@(speaker, query) printTable(query))
         Cue()
             .actor("coach")
             .criterias(
@@ -1313,6 +1317,7 @@ Concept()
             .responses(
                 "Worldc4m1b25" // That’s a nasty dam wreck.
             )
+            .callback(@(speaker, query) printTable(query))
             .followups("WreckCommentResponse")
         Cue()
             .actor("gambler")
@@ -1323,6 +1328,7 @@ Concept()
             .responses(
                 "Worldc4m1b28" // Now that is a nasty wreck.
             )
+            .callback(@(speaker, query) printTable(query))
             .followups("WreckCommentResponse")
         Cue()
             .actor("producer")
@@ -1333,11 +1339,12 @@ Concept()
             .responses(
                 "Worldc4m1b13" // Now that is a nasty wreck.
             )
+            .callback(@(speaker, query) printTable(query))
             .followups("WreckCommentResponse")
     );
 
 Concept()
-    .name("WreckCommentResponse")
+    .value("WreckCommentResponse")
     .publishCues(
         Cue()
             .actor("mechanic")
@@ -1352,7 +1359,7 @@ Concept()
     );
 
 Concept()
-    .name("SaferoomSeen")
+    .value("SaferoomSeen")
     .remarkable(684)
     .publishCues(
         Cue()
@@ -1398,7 +1405,7 @@ Concept()
     );
 
 Concept()
-    .name("StormStarting")
+    .value("StormStarting")
     .triggerOnce()
     .publishCues(
         Cue()
@@ -1444,7 +1451,7 @@ Concept()
     );
 
 Concept()
-    .name("RainStarting")
+    .value("RainStarting")
     .triggerOnce()
     .publishCues(
         Cue()
@@ -1491,7 +1498,7 @@ Concept()
     );
 
 Concept()
-    .name("BoatComment")
+    .value("BoatComment")
     .remarkable(186)
     .triggerOnce()
     .publishCues(
