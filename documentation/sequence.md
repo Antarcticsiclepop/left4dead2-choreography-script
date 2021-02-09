@@ -35,7 +35,7 @@ You may add **followups** to any `Cue::` object of the **sequence** for branchin
 
 ## **`::criterias()`**
 
-Using this function will set the same criterias to every **cue** of the **sequence**, the **criterias** of a `Cue::` object will not be overwritten.
+Function will set the same criterias to every **cue** of the **sequence**, the **criterias** of a `Cue::` object will not be overwritten.
 
 ```javascript
 .publishCues(

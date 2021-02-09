@@ -24,11 +24,11 @@
 );
 ```
 
-A `Reponse::` object will allow you to add more options after a scene has finished, rather than using direct scene names. It's valid to not provide a **scene**.
+A `Reponse::` object will allow you to add more options after a scene has finished, rather than using direct **scene names**. It's valid to not provide a **scene name**.
 
 ## **`::followups()`**
 
-Using this function will trigger another **concept** after the **response** has successfully prompted . Example:
+Function will trigger another **concept** after the **response** has successfully prompted . Example:
 
 ```javascript
 .publishCues(
@@ -48,7 +48,7 @@ This is useful when you need different **followups** for every **response**.
 
 ## **`::callback()`**
 
-Using this function will allow you to provide a callback function that will execute after a **response** prompt has ended. Example:
+Function will allow you to provide a callback function that will execute after a **response** prompt has ended. Example:
 
 ```javascript
 .publishCues(

@@ -13,34 +13,34 @@ Cue()
 
 # Available custom criterias
 
-## **`criteriaNotSaid()`**
+## **`WCScript::criteriaNotSaid()`**
 
 Halts the **cue** from triggering if some other **concept** has already prompted a **cue** by looking in the **world's context table**, use the `Concept::record()` function to store the **concept** when prompted.
 
 ```javascript
 .criterias(
     /**
-    * @param OTHER_CONCEPT String that represents the name of a Concept
+    * @param {string} OTHER_CONCEPT A concept
     */
     criteriaNotSaid(OTHER_CONCEPT)
 )
 ```
 
-## **`criteriaWorldNotValue()`**
+## **`WCScript::criteriaWorldNotValue()`**
 
 Halts the **cue** from triggering if a created **context** equals a value.
 
 ```javascript
 .criterias(
     /**
-    * @param {string} CONTEXT The context name
+    * @param {string} CONTEXT A context
     * @param {number | string} VALUE The context value
     */
     criteriaWorldNotValue(CONTEXT, VALUE)
 )
 ```
 
-## **`criteriaNotInDanger()`**
+## **`WCScript::criteriaNotInDanger()`**
 
 A collection of the following **criterias**:
 
@@ -60,28 +60,39 @@ A collection of the following **criterias**:
 )
 ```
 
-## **`criteriaAliveAndNear()`**
+## **`WCScript::criteriaAliveAndNear()`**
 
 Useful for restricting cues that require certain survivors to be alive and near one another.
 
 ```javascript
 .criterias(
     /**
-    * @param SURVIVORS String
+    * @param {string} SURVIVORS
     *        - Check if multiple survivors are alive, ex. "gambler & mechanic & producer"
     *        - Check if any of the following survivors are alive, ex. "gambler | mechanic"
     *        - Check if any of the following group of survivors are alive, ex. "gambler & mechanic | gambler & coach"
     *        - Check if any survivor is alive, ex. "any"
-    * @param MIN_DISTANCE Number that represents the minimum distance from the actor to another survivor
-    * @param MAX_DISTANCE Number that represents the maximum distance from the actor to another survivor
+    * @param {number} MIN_DISTANCE The minimum distance from the actor to another survivor
+    * @param {number} MAX_DISTANCE The maximum distance from the actor to another survivor
     */
     criteriaNotInDanger(SURVIVORS, MIN_DISTANCE, MAX_DISTANCE)
 )
 ```
 
-# Writing custom criterias
+# Writing custom criterions
 
-TO-DO
+Create your own **criterions** by creating a function to be used as a **criteria**, your function must return **true** or **false**. Example:
+
+```
+Cue()
+    .criterias(
+        [@(query) "worldMyContext" in query && query["worldMyContext"] > 10]
+    )
+    .actor("coach")
+    ...
+```
+
+> The **query** parameter is required for your function.
 
 # Example of the **context table**
 

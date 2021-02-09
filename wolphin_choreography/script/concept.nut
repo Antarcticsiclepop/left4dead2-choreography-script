@@ -2,7 +2,7 @@ class Concept extends ParserBase {
 
     static _className = "Concept";
 
-    _name = null;
+    _value = null;
     _triggerOnce = false;
     _cues = null;
     _remarkable = null;
@@ -38,13 +38,21 @@ class Concept extends ParserBase {
         return this;
     }
 
-    function name(...) {
-        _functionName = "name";
+    function value(...) {
+        _functionName = "value";
         _validateParameterLength(vargv, 1);
         _validateType(vargv[0], "string");
         _validateString(vargv[0]);
 
-        _name = vargv[0];
+        _value = vargv[0];
+        return this;
+    }
+
+    function name(...) {
+        _functionName = "name";
+        error(_getReference() + " has been deprecated, please replace with Concept::value()\n");
+
+        value(vargv[0]);
         return this;
     }
 

@@ -15,11 +15,11 @@ Response()
     )
 ```
 
-A `Followup::` object will allow you to add more options after a scene has finished rather than using direct **concept** names.
+A `Followup::` object will allow you to add more options after a scene has finished rather than using direct **concepts**.
 
 ## **`::target()`**
 
-Using this function will make it a **criteria** whom the **actor** must be for to the next **concept** . Example:
+Function will make it a **criteria** whom the **actor** must be for to the next **concept** . Example:
 
 ```javascript
 Cue()
@@ -53,7 +53,7 @@ Followup()
 
 ## **`::delay()`**
 
-Using this function will add a delay before the next **concept** is triggered. Example:
+Function will add a delay before the next **concept** is triggered. Example:
 
 ```javascript
 Cue()

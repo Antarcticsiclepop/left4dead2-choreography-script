@@ -20,7 +20,7 @@ The list of survivors names are as follows:
 
 ## **`::criterias()`**
 
-Using this function will define criterias the **cue** must meet for the **responses** to prompt. Example:
+Function will define criterias the **cue** must meet for the **responses** to prompt. Example:
 
 ```javascript
 .publishCues(
@@ -37,7 +37,7 @@ Using this function will define criterias the **cue** must meet for the **respon
 
 ## **`::followups()`**
 
-Using this function will trigger another **concept** after any of its **responses** has successfully prompted. The **followups** of the `Cue::` object will not be overwrite the **followups** of the `Response::` object. Example:
+Function will trigger another **concept** after any of its **responses** has successfully prompted. The **followups** of the `Cue::` object will not be overwrite the **followups** of the `Response::` object. Example:
 
 ```javascript
 .publishCues(
@@ -52,7 +52,7 @@ Using this function will trigger another **concept** after any of its **response
 
 ## **`::callback()`**
 
-Using this function will allow you to provide a callback function that will execute after any of the **responses** has prompted. The **callback** of the `Cue::` object will not be overwrite the **callback** of the `Response::` object. Example:
+Function will allow you to provide a callback function that will execute after any of the **responses** has prompted. The **callback** of the `Cue::` object will not be overwrite the **callback** of the `Response::` object. Example:
 
 ```javascript
 .publishCues(
@@ -67,7 +67,7 @@ Using this function will allow you to provide a callback function that will exec
 
 ## **`::repeatableResponses()`**
 
-Using this function will make the **cue** prompt any **response** even if it has been recently prompted when triggered. Example:
+Function will make the **cue** prompt any **response** even if it has been recently prompted when triggered. Example:
 
 > By default, every **response** is prompted atleast once before repeating.
 
@@ -82,7 +82,7 @@ Using this function will make the **cue** prompt any **response** even if it has
 
 ## **`::promptResponsesSequentially()`**
 
-Using this function will make the **cue** prompt the **responses** in sequential order rather than randomly. Example:
+Function will make the **cue** prompt the **responses** in sequential order rather than randomly. Example:
 
 ```javascript
 .publishCues(
@@ -95,7 +95,7 @@ Using this function will make the **cue** prompt the **responses** in sequential
 
 ## **`::promptResponsesOnce()`**
 
-Using this function will make the **cue** prompt each **response** only once (it will not be able to prompt that **response** again). The **cue** will be disabled once all **responses** have prompted. Example:
+Function will make the **cue** prompt each **response** only once (it will not be able to prompt that **response** again). The **cue** will be disabled once all **responses** have prompted. Example:
 
 ```javascript
 .publishCues(
@@ -108,7 +108,7 @@ Using this function will make the **cue** prompt each **response** only once (it
 
 ## **`::matchOnce()`**
 
-Using this function will disable the **cue** after prompting one **response**. Example:
+Function will disable the **cue** after prompting one **response**. Example:
 
 ```javascript
 .publishCues(

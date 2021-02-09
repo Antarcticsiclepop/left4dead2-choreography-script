@@ -21,7 +21,7 @@ class ParserBase extends Validateable {
             if (item instanceof WCScript.Sequence) {
                 _parseSequence(item, index);
             } else {
-                _createResponseRule(_name, _getRuleName(index), item, index)
+                _createResponseRule(_value, _getRuleName(index), item, index)
             }
         }
     }
@@ -39,9 +39,9 @@ class ParserBase extends Validateable {
 
             local cue = cues.pop();
             if (cue instanceof WCScript.Cue) {
-                // The first cue of the sequence adopts the concept name.
-                // The rest of the rules get a unique concept name to follow up from the previous cue.
-                local ruleConcept = ruleIndex == 0 ? _name : ruleName + ruleIndex.tostring();
+                // The first cue of the sequence belongs to the concept.
+                // The rest of the rules get a unique concept to follow up from the previous cue.
+                local ruleConcept = ruleIndex == 0 ? _value : ruleName + ruleIndex.tostring();
 
                 // Add the next followup if any (excludes last cue).
                 if (cues.len() > 0) {
@@ -87,10 +87,10 @@ class ParserBase extends Validateable {
 
     /**
         Generate a unique name for every Cue and Sequence
-        from the concept name. (concept_A, concept_B, concept_C...)
+        from the concept. (concept_A, concept_B, concept_C...)
     */
     function _getRuleName(index) {
-        return _name + "_" + WCScript.getSuffix(index);
+        return _value + "_" + WCScript.getSuffix(index);
     }
 
     function _createResponseRule(ruleConcept, ruleName, cue, index) {
@@ -98,8 +98,8 @@ class ParserBase extends Validateable {
         local onlyTriggerOnce = false;
         local recordConcept = false;
 
-        // Check if Cue is triggered by original concept name.
-        if (ruleConcept == _name) {
+        // Check if Cue is triggered by original concept
+        if (ruleConcept == _value) {
             onlyTriggerOnce = _triggerOnce;
             recordConcept = _record;
 
@@ -116,7 +116,7 @@ class ParserBase extends Validateable {
                 criterias.append(["concept", ruleConcept]);
             }
             
-            // Check if Cue should only be triggered once.
+            // Check if Cue should only be triggered once
             if (onlyTriggerOnce) {
                 criterias.append(WCScript.criteriaNotSaid(ruleConcept));
             }

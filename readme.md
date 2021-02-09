@@ -23,7 +23,7 @@ Click the links below to learn how to create dialogues:
 * [Writing a `Concept` object](documentation/concept.md) 🎬
     * [Writing a `Cue` object](documentation/cue.md)
     * [Writing a `Sequence` object](documentation/sequence.md)
-        * [Writing `Criterias`](documentation/criterias.md)
+        * [Writing `Criterias`](documentation/criteria.md)
         * [Writing a `Response` object](documentation/response.md) 📣
         * [Writing a `Followup` object](documentation/followup.md)
 
@@ -133,11 +133,11 @@ You can use the subtitle files of the game to find scenes you are looking for an
 "Virgil_C4End14"	"<clr:148,148,110>Virgil: Woo, look out now, that big fella, there!" // "Virgil_C4End14" is the scene name
 ```
 
-## **Trigger sounds with `::callback()`**
+## **Trigger sounds as responses**
 
-I have provided two useful functions to use with the `::callback()` function:
+By using the `Response::callback()` or `Cue::callback()` function you can play sounds, example:
 
-### **`::emitSound()`**
+### **`WCScript::emitSound()`**
 
 ```javascript
 .responses(
@@ -148,14 +148,14 @@ I have provided two useful functions to use with the `::callback()` function:
 
 ```javascript
 /**
-* @param {instance} SPEAKER The actor of the **response**
-* @param {table} QUERY The **context table**
+* @param {instance} SPEAKER The actor of the response
+* @param {table} QUERY The context table
 * @param {string} SOUND_NAME The name of the sound
 */
 emitSound(SPEAKER, QUERY, SOUND_NAME)
 ```
 
-### **`::playSoundFile()`**
+### **`WCScript::playSoundFile()`**
 
 ```javascript
 .responses(
@@ -168,8 +168,8 @@ emitSound(SPEAKER, QUERY, SOUND_NAME)
 
 ```javascript
 /**
-* @param {instance} SPEAKER The actor of the **response**
-* @param {table} QUERY The **context table**
+* @param {instance} SPEAKER The actor of the response
+* @param {table} QUERY The context table
 * @param {string} SOUND_FILE The sound file to play
 * @param {number} [VOLUME = 1] Volume to play the audio file (0.0 - 1.0)
 */
@@ -183,7 +183,7 @@ You can override existing **cues** with your own dialogues, this includes the ra
 ```
 // Replace the `Argh!` response in the radial menu for **Nick**
 Concept()
-    .name("PlayerNegative")
+    .value("PlayerNegative")
     .publishCues(
         Cue()
             .actor("gambler")
@@ -195,11 +195,11 @@ Concept()
 
 ## **Apply context to world**
 
-You can create your own **context** in the **world's context table** to use as **criterias**, I have provided some functions to simplify usage:
+You can create your own **context** in the **world's context table** to use as **criterias**, example:
 
-### **`::setWorldContext()`**
+### **`WCScript::setWorldContext()`**
 
-Use this function to create a **context** in the **world's context table**.
+Function to create a **context** in the **world's context table**.
 
 ```javascript
 .responses(
@@ -208,20 +208,20 @@ Use this function to create a **context** in the **world's context table**.
 )
 ```
 
-> Your **context** name will be prefixed with the word *"world"* when saving to the **world's context table**, *"MyContext"* will appear as *"worldMyContext"*.
+> Your **context** will be prefixed with the word *"world"* when saving to the **world's context table**, *"MyContext"* will appear as *"worldMyContext"*.
 
 ```javascript
 /**
-* @param {string} CONTEXT The context name
+* @param {string} CONTEXT A context
 * @param {number | string} [VALUE = 1] The context value
 * @param {number} [DURATION = -1] Duration in seconds for the context to exist, -1 to exist forever
 */
 setWorldContext(CONTEXT, VALUE, DURATION)
 ```
 
-### **`::addToWorldContext()`**
+### **`WCScript::addToWorldContext()`**
 
-Use this function to keep increasing the value of your **context**, it will create the **context** if it doesn't exist with the additive value.
+Function to keep increasing the value of your **context**, it will create the **context** if it doesn't exist with the additive value.
 
 ```javascript
 .responses(
@@ -230,12 +230,10 @@ Use this function to keep increasing the value of your **context**, it will crea
 )
 ```
 
-> Use the `/` character for file path.
-
 ```javascript
 /**
-* @param {table} QUERY The **context table**
-* @param {string} CONTEXT The context name
+* @param {table} QUERY The context table
+* @param {string} CONTEXT A context
 * @param {number | string} [VALUE = 1] The additive value
 * @param {number} [DURATION = -1] Duration in seconds for the context to exist, -1 to exist forever
 */
