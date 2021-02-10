@@ -51,7 +51,7 @@ There are many ways to trigger a **cue**, but a *remarkable* **cue** can only be
 
 ## **By *func_orator* entity**
 
-Use a entity to trigger the following output:
+Use a entity with the following output:
 
 ```
 My output named                 <any>
@@ -62,7 +62,7 @@ With a parameter override of    <concept_name>
 
 ## **By *info_director* entity**
 
-Use a entity to trigger the following output (only targets survivors):
+Use a entity with the following output (only targets survivors):
 
 ```
 My output named                 <any>
@@ -73,7 +73,7 @@ With a parameter override of    <concept_name>
 
 ## **By interactable entity**
 
-Use a interable entity (ex. `func_button`) to trigger the output:
+Use a interable entity (ex. `func_button`) with the following output:
 
 ```
 My output named                 OnPressed
@@ -84,7 +84,7 @@ With a parameter override of    <concept_name>
 
 ## **By *ent_fire* command**
 
-Write a script that executes the following command:
+Write a script that executes the following function:
 
 ```
 EntFire("info_director", "FireConceptToAny", "<concept_name>", 0.0);
@@ -93,7 +93,7 @@ EntFire("func_orator", "SpeakResponseConcept", "<concept_name>", 0.0);
 
 ## **By *info_remarkable* entity**
 
-Create a `info_remarkable` with the following propery:
+Create a `info_remarkable` with the following property:
 
 ```
 Subject context                 <concept_name>
