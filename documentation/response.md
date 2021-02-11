@@ -28,7 +28,7 @@ A `Reponse::` object will allow you to add more options after a scene has finish
 
 ## **`::followups()`**
 
-Function will trigger another **concept** after the **response** has successfully prompted . Example:
+Function will invoke another **concept** after the **response** has successfully prompted. Example:
 
 ```javascript
 .publishCues(

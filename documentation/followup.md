@@ -15,11 +15,11 @@ Response()
     )
 ```
 
-A `Followup::` object will allow you to add more options after a scene has finished rather than using direct **concepts**.
+A `Followup::` object will allow you to add more options after a scene has finished rather than using direct **concept values**.
 
 ## **`::target()`**
 
-Function will make it a **criteria** whom the **actor** must be for to the next **concept** . Example:
+Function will target whom the **actor** must be for to the next **concept** and invoke it. Example:
 
 ```javascript
 Cue()
@@ -48,12 +48,12 @@ Followup()
 * `self` - Target the same speaker from the response (survivor or func_orator).
 * `any` - Target any survivor. Default option.
 * `subject` - Target the survivor being looked at.
-* `from` - Same as `self`.
+* `from` - Same as `self`. *I think.*
 * `func_orator` - Target the first func_orator found.
 
 ## **`::delay()`**
 
-Function will add a delay before the next **concept** is triggered. Example:
+Function will add a delay before the next **concept** is invoked. Example:
 
 ```javascript
 Cue()

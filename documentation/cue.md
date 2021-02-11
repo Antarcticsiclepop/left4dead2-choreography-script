@@ -10,7 +10,7 @@
 );
 ```
 
-This is an example of a `Cue::` object with the **actor** *gambler* (a.k.a. Nick), a `Cue::` object must contain one or more **responses**. A single **response** will be prompted at random if the `Cue::` object's **criterias** are met. By default, as a criteria, the **actor** must be alive/exist.
+This is an example of a `Cue::` object with the **actor** *gambler* (a.k.a. Nick), a `Cue::` object must contain one or more **responses**. A single **response** will be prompted at random if the `Cue::` object's **criterias** are met. By default, as a **criteria**, the **actor** must be alive/exist.
 
 The list of survivors names are as follows:
 
@@ -33,11 +33,11 @@ Function will define criterias the **cue** must meet for the **responses** to pr
 );
 ```
 
-> There is a bug where **cues** with more criterias will have higher priority when evaluating, it's recommended to keep the same amount of criteras for all `Cue::` objects.
+> There is an odd behavior where **cues** with more criterias will have higher priority when evaluating (needs more testing), it's recommended to keep the same amount of criteras for all `Cue::` objects.
 
 ## **`::followups()`**
 
-Function will trigger another **concept** after any of its **responses** has successfully prompted. The **followups** of the `Cue::` object will not be overwrite the **followups** of the `Response::` object. Example:
+Function will invoke another **concept** after any of its **responses** has successfully prompted. The **followups** of the `Cue::` object will not be overwrite the **followups** of the `Response::` object. Example:
 
 ```javascript
 .publishCues(
@@ -52,7 +52,7 @@ Function will trigger another **concept** after any of its **responses** has suc
 
 ## **`::callback()`**
 
-Function will allow you to provide a callback function that will execute after any of the **responses** has prompted. The **callback** of the `Cue::` object will not be overwrite the **callback** of the `Response::` object. Example:
+Function will allow you to provide a callback function that will execute when any of the **responses** has prompted. The **callback** of the `Cue::` object will not be overwrite the **callback** of the `Response::` object. Example:
 
 ```javascript
 .publishCues(
