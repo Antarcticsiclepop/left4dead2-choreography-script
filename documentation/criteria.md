@@ -5,9 +5,9 @@ Criterias are compared with a **context table**, you can write **criterias** tha
 ```javascript
 Cue()
     .criterias(
-        ["coughing", 0],
-        ["numberofteamalive", 0, 4],
-        ["activeweapon", "SecondPistol"]
+        ["coughing", 0],                        // "coughing" must be 0
+        ["numberofteamalive", 2, 4],            // "numberofteamalive" must be between 2 and 4
+        ["activeweapon", "SecondPistol"]        // "activeweapon" must be "SecondPistol"
     )
 ```
 
@@ -83,9 +83,9 @@ Useful for restricting cues that require certain survivors to be alive and near 
 
 Create your own **criterions** by creating a function to be used as a **criteria**, your function must return **true** or **false**. Example:
 
-```
+```javascript
 Cue()
-    .criterias(
+    .criterias( // "worldMyContext" my be greater than 10, important to first check if a custom context exists
         [@(query) "worldMyContext" in query && query["worldMyContext"] > 10]
     )
     .actor("coach")
@@ -96,7 +96,7 @@ Cue()
 
 # Example of the **context table**
 
-```
+```javascript
 numberinsafespot                = 4
 health                          = 100
 SPITTERsKilled                  = 0
