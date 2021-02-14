@@ -180,7 +180,7 @@ playSoundFile(SPEAKER, QUERY, SOUND_FILE, VOLUME)
 
 You can override existing **cues** with your own dialogues, this includes the radial menu, example:
 
-```
+```javascript
 // Replace the `Argh!` response in the radial menu for **Nick**
 Concept()
     .value("PlayerNegative")
