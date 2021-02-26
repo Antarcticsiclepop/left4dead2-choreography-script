@@ -37,7 +37,7 @@ Function will define criterias the **cue** must meet for the **responses** to pr
 
 ## **`::followups()`**
 
-Function will invoke another **concept** after any of its **responses** has successfully prompted. The **followups** of the `Cue::` object will not be overwrite the **followups** of the `Response::` object. Example:
+Function will invoke another **concept** after any of its **responses** has successfully prompted. The **followups** of the `Cue::` object will not overwrite the **followups** of the `Response::` object. Example:
 
 ```javascript
 .publishCues(
@@ -52,7 +52,7 @@ Function will invoke another **concept** after any of its **responses** has succ
 
 ## **`::callback()`**
 
-Function will allow you to provide a callback function that will execute when any of the **responses** has prompted. The **callback** of the `Cue::` object will not be overwrite the **callback** of the `Response::` object. Example:
+Function will allow you to provide a callback function that will execute when any of the **responses** has prompted. The **callback** of the `Cue::` object will not overwrite the **callback** of the `Response::` object. Example:
 
 ```javascript
 .publishCues(
